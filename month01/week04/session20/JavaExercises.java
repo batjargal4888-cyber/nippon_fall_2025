@@ -51,18 +51,17 @@ public class JavaExercises {
         System.out.println();
         System.out.println("5.");
         int secretNumber = 7;
-        int guess = 0;
-        int attempts = 0;
-        while (guess != secretNumber) {
-            // user enters number
-            guess = (int)(Math.random() * 10) + 1; // random number 1 - 10
-            System.out.println("Guessing. . . " + guess);
-            if (guess != secretNumber) {
-                System.out.println("Wrong!");
+        int[] guesses = {3, 8, 7}; // first 2 guess is wrong, 3rd is right
+        int index = 0;
+        while (true) {
+            int guess = guesses[index];
+            System.out.println("Таамаглаж байна . . . " + guess);
+            if (guess == secretNumber) {
+                System.out.println("Зөв таалаа!");
+            } else {
+                System.out.println("Буруу!");
             }
             attempts++;
         }
-        System.out.println("Correct guess!");
-        System.out.println("Number of guess: " + attempts);
     }
 }

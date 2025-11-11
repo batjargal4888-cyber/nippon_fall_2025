@@ -44,7 +44,6 @@ class WhileLoop {
         
         int counter3 = 1;
         int summe = 0;
-        System.out.println("Exercise 03 While Loop start");
         while(counter3 <= 100){
             summe = summe + counter3;
             counter3 = counter3 + 1;
