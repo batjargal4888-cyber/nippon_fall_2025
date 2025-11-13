@@ -168,6 +168,7 @@ public class Exercise01 {
         System.out.println("Нийт: " + count + " өдөр");
 
         // 10.1. make array
+        System.out.println();
         ArrayList<Integer> Numbers = new ArrayList<>();
         Numbers.add(11);
         Numbers.add(22);
@@ -179,16 +180,132 @@ public class Exercise01 {
         Numbers.add(88);
         Numbers.add(99);
         Numbers.add(110);
-        int chosenNumber = 3;
 
         // 10.2. print 1st 3 element
-        System.out.print("Эхний " + chosenNumber + ": ");
+        int countFromLeft = 3;
+        System.out.print("Эхний " + countFromLeft + ": ");
         int firstSum = 0;
-        for (int i = 0; i < chosenNumber; i++) {
+        for (int i = 0; i < countFromLeft; i++) {
             System.out.print(Numbers.get(i));
             firstSum += Numbers.get(i);
-            if (i < chosenNumber - 1) System.out.print(", ");
+            if (i < countFromLeft - 1) System.out.print(", ");
         }
-        System.out.println("\nЭхний " + chosenNumber + "-ын нийлбэр: " + firstSum);
+        System.out.println("\nЭхний " + countFromLeft + "-н нийлбэр: " + firstSum);
+
+        // 10.3. print last 3 elements
+        System.out.println();
+        int countFromRight = 3;
+        System.out.print("Сүүлчийн " + countFromRight + ": ");
+        int lastSum = 0;
+        for(int i = Numbers.size() - countFromRight; i < Numbers.size(); i++) {
+            System.out.print(Numbers.get(i));
+            if (i < Numbers.size() - 1) System.out.print(", ");
+            lastSum += Numbers.get(i);
+        }
+        System.out.println("\nСүүлчийн " + countFromRight + "-н нийлбэр: " + lastSum);
+
+        // 10.4. Which is bigger sum?
+        System.out.println();
+        if (firstSum > lastSum) {
+            System.out.println("Эхний 3-ын нийлбэр илүү их");
+        } else if (firstSum < lastSum) {
+            System.out.println("Сүүлчийн 3-ын нийлбэр илүү их");
+        } else {
+            System.out.println("Нийлбэрүүд тэнцүү байна");
+        }
+
+        // 11.1
+        System.out.println();
+        System.out.println("Дасгал 11: Элемент хайх");
+        ArrayList<String> sixCountries = new ArrayList<>();
+        sixCountries.add("Япон");
+        sixCountries.add("Солонгос");
+        sixCountries.add("Монгол");
+        sixCountries.add("Хятад");
+        sixCountries.add("Орос");
+        sixCountries.add("Америк");
+
+        // 11.2. "Монгол" гэсэн улсыг for давталт + get() ашиглан хай
+        String search = "Монгол";
+        System.out.println("Хайж байна: " + search);
+
+        int foundIndex = -1;
+
+        for (int i = 0; i < sixCountries.size(); i++) {
+            if (sixCountries.get(i).equals(search)) {
+                foundIndex = i;
+                break;
+            }
+        }
+
+        if (foundIndex != -1) {
+            System.out.println("Олдлоо!");
+            System.out.println("Индекс: " + foundIndex);
+            System.out.println("Байрлал: " + (foundIndex + 1) + " дахь");
+        } else {
+            System.out.println("Олдсонгүй");
+        }
+
+        // Дасгал 12: Нийлбэр тооцоолох
+        System.out.println();
+        System.out.println("Дасгал 12: Нийлбэр тооцоолох");
+
+        // 1. Тоон жагсаалт үүсгэх
+        ArrayList<Integer> eightNumbers = new ArrayList<>();
+        eightNumbers.add(12);
+        eightNumbers.add(25);
+        eightNumbers.add(7);
+        eightNumbers.add(33);
+        eightNumbers.add(18);
+        eightNumbers.add(44);
+        eightNumbers.add(9);
+        eightNumbers.add(51);
+
+        // 2. Нийлбэрийг тооцоолох
+        int eightNumbersSum = 0;
+        for (int i = 0; i < eightNumbers.size(); i++) {
+            eightNumbersSum += eightNumbers.get(i);
+        }
+
+        // 3. Дундажийг тооцоолох
+        double eightNumbersAverage = (double) eightNumbersSum / eightNumbers.size();
+
+        // 4. Үр дүн хэвлэх
+        System.out.println("Тоонууд: " + eightNumbers);
+        System.out.println("Нийлбэр: " + eightNumbersSum);
+        System.out.println("Дундаж: " + eightNumbersAverage);
+
+        // Дасгал 13: Хамгийн их утга олох
+        System.out.println();
+        System.out.println("Дасгал 13: Хамгийн их утга олох");
+
+        // 1. ArrayList үүсгээд 10 тоо нэмэх
+        ArrayList<Integer> tenNumbers = new ArrayList<>();
+        tenNumbers.add(45);
+        tenNumbers.add(23);
+        tenNumbers.add(67);
+        tenNumbers.add(12);
+        tenNumbers.add(89);
+        tenNumbers.add(34);
+        tenNumbers.add(56);
+        tenNumbers.add(78);
+        tenNumbers.add(25);
+        tenNumbers.add(41);
+
+        // 2. Эхний элементийг хамгийн их гэж үзнэ
+        int max = tenNumbers.get(0);
+        int maxIndex = 0;
+
+        // 3. For давталтаар хамгийн ихийг хайна
+        for (int i = 1; i < tenNumbers.size(); i++) {
+            if (tenNumbers.get(i) > max) {
+                max = tenNumbers.get(i);
+                maxIndex = i;
+            }
+        }
+
+        // 4. Үр дүн хэвлэх
+        System.out.println("Хамгийн их утга: " + max);
+        System.out.println("Байрлал: индекс " + maxIndex);
     }
 }

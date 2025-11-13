@@ -3,6 +3,6 @@
 javac -cp ".:postgresql-42.7.8.jar" Main.java 
 ```
 ## Run the Main.java using postgresql driver
-'''bash
+```bash
 java -cp ".:postgresql-42.7.8.jar" Main
-'''
+```
