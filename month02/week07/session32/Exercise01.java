@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Exercise01 {
@@ -547,11 +546,21 @@ public class Exercise01 {
         ArrayList<String> cities = new ArrayList<>();
 
         // Өгөгдөл нэмэх
-        names.add("Болд");          grades.add(85);     cities.add("УБ");
-        names.add("Дорж");          grades.add(92);     cities.add("Дархан");
-        names.add("Цэцэг");         grades.add(78);     cities.add("УБ");
-        names.add("Сарнай");        grades.add(95);     cities.add("Эрдэнэт");
-        names.add("Бат");           grades.add(88);     cities.add("УБ");
+        names.add("Болд");
+        grades.add(85);
+        cities.add("УБ");
+        names.add("Дорж");
+        grades.add(92);
+        cities.add("Дархан");
+        names.add("Цэцэг");
+        grades.add(78);
+        cities.add("УБ");
+        names.add("Сарнай");
+        grades.add(95);
+        cities.add("Эрдэнэт");
+        names.add("Бат");
+        grades.add(88);
+        cities.add("УБ");
 
         int totalStudents = names.size();
 
@@ -574,15 +583,15 @@ public class Exercise01 {
         // 4. Дундаж оноо
         double sum20 = 0;
         for (int g : grades) {
-            sum20
- += g;
+            sum20 += g;
         }
         double average = sum20 / totalStudents;
 
         // 5. 80+ оноотой оюутнуудыг тоолох
         int countAbove80 = 0;
         for (int g : grades) {
-            if (g >= 80) countAbove80++;
+            if (g >= 80)
+                countAbove80++;
         }
 
         // 6. УБ-аас ирсэн оюутнуудын дундаж
@@ -614,7 +623,8 @@ public class Exercise01 {
 
         System.out.println("\nЕрөнхий статистик:");
         System.out.printf("  Дундаж оноо: %.2f%n", average);
-        System.out.println("  80+ оноотой: " + countAbove80 + " оюутан (" + String.format("%.1f", (countAbove80 * 100.0 / totalStudents)) + "%)");
+        System.out.println("  80+ оноотой: " + countAbove80 + " оюутан ("
+                + String.format("%.1f", (countAbove80 * 100.0 / totalStudents)) + "%)");
 
         System.out.println("\nУБ-аас ирсэн оюутнууд:");
         System.out.println("  Тоо: " + ubCount + " оюутан");
