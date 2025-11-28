@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Миний танилцуулга - Б.Батжаргал</title>
+</head>
+
+<body>
+
+    <header>
+        <!-- profile pciture -->
+        <img src="./images/batman.jpg" alt="Batman Profile Picture" width="200" />
+        <div>
+            <h1>Б.Батжаргал</h1>
+            <p>Веб хөгжүүлэгчээр суралцагч • Механик инженер</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">Танилцуулга</a></li>
+                    <li><a href="#skills">Чадвар</a></li>
+                    <li><a href="#contact">Холбоо барих</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <hr>
+
+    <main>
+        <!-- section 1 -->
+        <section id="about" aria-labelledby="about-h">
+            <h2 id="about-h">Танилцуулга</h2>
+            <p>Сайн байна уу!</p>
+            <p>Намайг Батжаргал гэдэг. Механик инженер мэргэжилтэй, одоогоор програм хангамжийн
+                инженерийн сургалтын 'fullstack' хөтөлбөрт сурч байгаа.</p>
+            <!-- unordered list -->
+            <h3>Сонирхол:</h3>
+            <ul>
+                <li>Веб хөгжүүлэлт</li>
+                <li>Техник технологи</li>
+                <li>Хүндийн өргөлтийн спорт</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- section 2 -->
+        <section id="skills" class="skills" aria-labelledby="skills-h">
+            <h2 id="skills-h">Чадвар</h2>
+
+            <!-- ordered list -->
+            <h3>Сурсан дараалал:</h3>
+            <ol>
+                <li>Програмчлалын үндсэн ойлголтууд</li>
+                <li>Shell Script (Linux командын скрипт)</li>
+                <li>Java-гийн суурь мэдлэг</li>
+                <li>SQL ба Өгөгдлийн Сан</li>
+                <li>HTML ба Вебийн Үндэс</li>
+            </ol>
+            <h3>Програмийн мэдлэг:</h3>
+            <ul>
+                <li>Java</li>
+                <li>HTML</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- section 3: Contact info -->
+        <section id="contact" aria-labelledby="contact-h">
+            <h2 id="contact-h">Надтай холбогдох</h2>
+            <p>Санал хүсэлт, ажлын санал ирүүлэх эсвэл зөвлөгөө авахыг хүсвэл дараах формыг бөглөнө үү.</p>
+            <form action="#" method="post" aria-labelledby="Contact form">
+
+                <label for="name">Нэр:</label><br>
+                <input type="text" id="name" name="name" placeholder="Таны нэр" required><br>
+
+                <label for="email">И-мэйл:</label><br>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required><br>
+
+                <label for="subject">Та надтай холбогдох болсон шалтгаанаа бичнэ үү:</label><br>
+                <input type="text" id="subject" name="subject"
+                    placeholder="Асуулт, санал, хамтын ажиллагааны хүсэлт гээд бүх төрлийн мессежийг хүлээн авна."
+                    required> <br>
+
+                <br>
+
+                <button type="submit">Илгээх</button>
+            </form>
+            <p style="margin-top: 12px;">Миний GitHub: <a href="https://github.com/batjargal4888-cyber" target="_blank"
+                    rel="noopener">github.com/batjargal4888-cyber</a></p>
+        </section>
+
+        <hr>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Batjargal. All rights reserved.</p>
+        <p>Contact: <a href="mailto: batjargal4888@gmail.com">batjargal4888@gmail.com</a></p>
+    </footer>
+</body>
+
+</html>
