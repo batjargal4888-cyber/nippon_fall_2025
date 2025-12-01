@@ -1,0 +1,27 @@
+h3 {
+    color: navy;
+}
+
+p {
+    color: #fb7d9e;
+}
+
+strong {
+    color: rgb(255, 0, 255);
+}
+
+body {
+    background-color: orange;
+    color: darkblue;
+}
+
+p {
+    color: darkblue;
+    background-color: white;
+}
+
+.color1 {width: 100px; height: 100px; background-color: green;}
+.color2 {width: 100px; height: 100px; background-color: white;}
+.color3 {width: 100px; height: 100px; background-color: black;}
+.color4 {width: 100px; height: 100px; background-color: blue;}
+.color5 {width: 100px; height: 100px; background-color: gray;}

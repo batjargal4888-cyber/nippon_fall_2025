@@ -1,0 +1,20 @@
+body {
+    background-color: #f4f4f4;
+}
+
+p {
+    color: #333333;
+}
+
+#main-title {
+    color: navy;
+}
+
+.highlight-word {
+    background-color: yellow;
+}
+
+.alert-text {
+    color: red;
+    font-weight: bold;
+}
