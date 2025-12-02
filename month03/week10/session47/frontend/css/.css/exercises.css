@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'AlexBrush';
+    src: url(/week10/session47/frontend/fonts/AlexBrush-Regular.ttf);
+}
+
+#alex {
+    font-family: 'AlexBrush';
+    font-size: 40px;
+    font-weight: 500;
+    text-align: center;
+    width: 400px;
+    background-color: aliceblue;
+    margin: 0 auto;
+    color: rgba(146, 160, 23, 0.5);
+}
+
+.big {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.small {
+    font-size: 25px;
+    text-transform: lowercase;
+}
+
+.big.capital {
+    text-transform: capitalize;
+}
+
+li a {
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#decor {
+    text-decoration: underline;
+}
+
+section p#one {
+    text-decoration: overline;
+}
+
+section p#two {
+    text-decoration: overline;
+}
+
+section p#three {
+    line-height: 50px;
+    text-align: justify;
+}
+
+section p#four {
+    letter-spacing: 10px;
+    word-spacing: 15px;
+    text-align: right;
+}
+
+.five {
+    font-size: 2em;
+    /* m usegnii urgunuur undsen hemjeegee awna */
+}
+
+#six {
+    font-size: 1.5rem;
+    /* undsen fontnii hemjeeg 1.5 aar urjuul */
+}
+
+.shadow p {
+    font-size: large;
+    background-color: #eee;
+    color: #666;
+    text-shadow: 1px 1px 3px #666;
+}
+
+p.intro::first-letter {
+    font-size: 200%;
+}
+
+p.intro::first-line {
+    font-weight: bold;
+}
+
+input {
+    padding: 6px 12px 6px 12px;
+    border: 1px solid #665544;
+    color: #fff;
+}
+/* pseudo class */
+input.submit:hover {
+    background-color: #665544;
+}
+
+input.submit:active {
+    background-color: chocolate;
+}
+
+input.text {
+    color: #ccc;
+}
+
+input.text:focus {
+    color: #665544;
+}

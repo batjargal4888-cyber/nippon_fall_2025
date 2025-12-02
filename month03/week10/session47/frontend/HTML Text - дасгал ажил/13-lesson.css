@@ -1,0 +1,37 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+#normal {
+    font-weight: normal;
+}
+
+#lighter {
+    font-weight: lighter;
+}
+
+#fw100 {
+    font-weight: 100;
+}
+
+#fw900 {
+    font-weight: 900;
+}
+
+#italic {
+    font-style: italic;
+}
+
+#normal-style {
+    font-style: normal;
+}
+
+#oblique-style {
+    font-style: oblique;
+}
+
+#uppercase-style{font-style: uppercase;}

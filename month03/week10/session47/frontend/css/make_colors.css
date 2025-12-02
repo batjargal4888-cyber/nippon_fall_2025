@@ -1,0 +1,37 @@
+/* h1 tag selector */
+h1 {
+    /* hexadecimal colors */
+    background-color: #6075d3ee;
+    /* red green blue channel color */
+    color: rgba(208, 92, 20, 1);
+    /*
+        red : 0 - 255
+        green : 0 - 255
+        blue : 0 - 255 
+     */
+    /* border-color: hsl(); */
+}
+
+/* id selector */
+
+li {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    font-style: italic;
+}
+/* id selector */
+#turkish {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+    font-style: bold;
+    font-weight: 800;
+}
+
+/* class selector */
+
+.Japanese {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 45;
+    font-style: oblique;
+    font-weight: 500;
+}
