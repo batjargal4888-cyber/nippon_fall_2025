@@ -1,0 +1,68 @@
+main {
+    width: 700px;
+    background-color: wheat;
+    height: 100vh;
+}
+
+.margin-intro {
+    width: 500px;
+    height: 500px;
+    background-color: violet;
+    /* border */
+    border-top-color: red;
+    border-top-width: 2px;
+    border-top-style: dashed;
+    /* border right */
+    border-right-color: aqua;
+    border-right-width: 8px;
+    border-right-style: dotted;
+    /* border bottom */
+    border-bottom-color: green;
+    border-bottom-width: 6px;
+    border-bottom-style: groove;
+    /* border left */
+    border-left: 10px blue dashed;
+    /* padding */
+    padding-top: 30px;
+    padding-left: 80px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    /* margin */
+}
+
+.image-gallery img {
+    width: 200px;
+    /* border */
+    /* zurgiin ram */
+    border: 3px solid black;
+    /* padding */
+    padding: 40px 30px 20px 10px;
+    /* margin */
+    margin: 40px 30px 20px;
+}
+
+.image-gallery #two-values {
+    margin: 40px 20px 40px;
+}
+
+.image-gallery #one-value {
+    margin: 50px;
+}
+
+.oval-image-gallery {
+    width: 150px
+        /* border radius */
+}
+
+.oval-image-gallery #two-values {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.oval-image-gallery img {
+    width: 200px;
+}
+
+.oval-image-gallery #one-value {
+    border-radius: 50%;
+}

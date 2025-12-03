@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    max-width: 800px;
+    padding: 20px;
+}
+
+footer {
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0;
+    padding: 20px;
+}
