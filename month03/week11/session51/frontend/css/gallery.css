@@ -1,0 +1,12 @@
+img {
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
+
+    /* float baruun tal ruugaa */
+    float: right;
+}
+
+div.parent {
+    border: 2px solid black;
+}

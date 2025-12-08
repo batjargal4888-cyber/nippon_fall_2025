@@ -1,0 +1,29 @@
+/* universal selector */
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 1280px;
+    height: 100vh;
+    background-color: whitesmoke;
+    margin: 0 auto;
+}
+
+/* section deer undriig n 300, 600 urguntei bas ariin 
+ungutei textiin ungiig uursduu songood bordertoi bas 
+dundaa bairlasan bolgono uu. Dotor n baigaa textuud tuw 
+duu bairlah ystoi. hoorond n zaitai bolgono uu. */
+
+section {
+    height: 300px;
+    width: 600px;
+    background-color: blue;
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-radius: 50px;
+}

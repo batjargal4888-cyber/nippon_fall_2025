@@ -1,0 +1,54 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    max-width: 1440px;
+    background-color: gainsboro;
+    height: 100vh;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    text-align: center;
+    color: red;
+    margin: 30px;
+    border: 2px dotted brown;
+}
+
+/* display */
+.box-block {
+    display: inline-block;
+}
+
+.box-inline {
+    display: block;
+}
+
+.box-inline-block {
+    display: inline-block;
+}
+
+/* Ikon menu exercise */
+.menu-container {
+    height: 37px;
+    background-color: rgb(69, 77, 98);
+}
+
+.menu {
+    border-left: 1px solid #545b6e;
+    border-right: 1px solid #393f50;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    height: 100%;
+    line-height: 37px;
+    padding: 0 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}

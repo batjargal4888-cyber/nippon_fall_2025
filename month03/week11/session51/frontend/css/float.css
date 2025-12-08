@@ -1,0 +1,32 @@
+header {
+    height: 80px;
+    background-color: orange;
+    text-align: center;
+}
+
+aside {
+    width: 25%;
+    /* float to the left */
+    float: left;
+    height: 200px;
+    background-color: greenyellow;
+    text-align: center;
+}
+
+section {
+    /* float center */
+    float: left;
+    width: 50%;
+    height: 200px;
+    background-color: gold;
+    text-align: center;
+}
+
+footer {
+    /* clear */
+    clear: both;
+    border: 2px solid black;
+    height: 40px;
+    background-color: orange;
+    text-align: center;
+}

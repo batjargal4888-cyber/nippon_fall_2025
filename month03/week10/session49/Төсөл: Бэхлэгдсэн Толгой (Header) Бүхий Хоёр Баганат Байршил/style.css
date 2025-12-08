@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* --- Position (Бэхлэгдсэн Элемент) --- */
+.header {
+    position: fixed;
+    /* Дэлгэцэнд бэхлэгдэнэ */
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+    /* Бүх зүйлийн дээр байна */
+
+    /* --- Загварчлал --- */
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Padding-г өргөн/өндөрт оруулна */
+    height: 60px;
+    /* Тогтмол өндөр тодорхойлох */
+}
+
+/* --- Нэгтгэл --- */
+/* Энэ container нь бэхлэгдсэн толгойн доор нуугдахаас сэргийлж padding-тай байх ЁСТОЙ. */
+.page-container {
+    padding-top: 60px;
+    /*Толгойн өндрөөс >= байх ёстой */
+    width: 90%;
+    margin: 0 auto;
+    /* Container-г голлуулна */
+
+    /* Энэ нь inline-block-ийн хоорондох зайны асуудлыг засахад тусалдаг */
+    font-size: 0;
+}
+
+/* --- Display (inline-block байршил) --- */
+.main-content {
+    display: inline-block;
+    width: 70%;
+
+    /* --- Загварчлал --- */
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    vertical-align: top;
+    /* Энэ блокыг дээд талд зэрэгцүүлнэ */
+    font-size: 16px;
+    /* Үсгийн хэмжээг дахин тохируулах */
+}
+
+.sidebar {
+    display: inline-block;
+    width: 30%;
+
+    /* --- Загварчлал --- */
+    background: #e9e9e9;
+    padding: 20px;
+    box-sizing: border-box;
+    vertical-align: top;
+    /* Энэ блокыг дээд талд зэрэгцүүлнэ */
+    font-size: 16px;
+    /* Үсгийн хэмжээг дахин тохируулах */
+}

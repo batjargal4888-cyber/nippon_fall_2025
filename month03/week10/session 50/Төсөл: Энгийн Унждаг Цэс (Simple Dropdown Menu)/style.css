@@ -1,0 +1,63 @@
+/* Цэсийн үндсэн загвар */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  overflow: hidden; /* Зөв дадал */
+  font-family: sans-serif;
+}
+
+/* --- Display --- */
+/* Элементүүдийг зэрэгцүүлэн байрлуулахын тулд inline-block ашиглана */
+.nav-item {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+/* --- Position (Контекст) --- */
+/* Энэ нь absolute хүү элементийн харьцангуй зангуу (anchor) болно */
+.dropdown {
+  position: relative;
+}
+
+/* --- Position (Absolute Элемент) --- */
+/* Энэ бол гарч ирэх цэс */
+.dropdown-content {
+  /* --- Position --- */
+  position: absolute;   /* Урсгалаас хасна */
+  top: 100%;            /* Эцэг элементийн яг дор байрлуулна */
+  left: 0;
+  z-index: 1;           /* Дээр гарахыг баталгаажуулна */
+
+  /* --- Display (Нуух/Харуулах) --- */
+  display: none;        /* Эхэндээ нуугдмал байна */
+
+  /* --- Загварчлал --- */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Унждаг цэс доторх холбоосуудын загвар */
+.dropdown-content a {
+  display: block; /* Холбоосуудыг босоо байдлаар байрлуулна */
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+/* :hover үед унждаг цэсийг харуулна */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* :hover үеийн энгийн эффектүүд */
+.nav-item:hover {
+  background-color: #555;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}

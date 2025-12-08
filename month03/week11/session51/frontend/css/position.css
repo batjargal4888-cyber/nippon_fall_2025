@@ -1,0 +1,33 @@
+* {
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: wheat;
+}
+
+section {
+    max-width: 300px;
+    height: 150px;
+    background-color: yellowgreen;
+    color: #fff;
+    border: 2px red solid;
+    display: inline-block;
+    position: absolute;
+}
+
+/* position */
+#one {
+    left: 0;
+}
+
+#two {
+    left: 44%;
+}
+
+#three {
+    right: 0;
+}

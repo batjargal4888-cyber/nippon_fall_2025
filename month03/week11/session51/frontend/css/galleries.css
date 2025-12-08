@@ -1,0 +1,13 @@
+img {
+    width: 240px;
+    height: 180px;
+    margin: 2px;
+    /* float left */
+    float: left;
+}
+
+div.parent {
+    border: 4px solid black;
+    /* overflow when border is not over */
+    overflow: auto;
+}

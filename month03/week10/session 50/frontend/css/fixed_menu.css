@@ -1,0 +1,36 @@
+ul {
+    background-color: rgb(22, 83, 60);
+    height: 100%;
+    width: 100%;
+    color: white;
+    margin: 0;
+}
+
+ul li {
+    font-size: 30px;
+    display: inline;
+    margin-left: 5%;
+}
+
+article {
+    width: 500px;
+    height: 100vh;
+}
+
+.fixed-menu {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10px;
+    color: #fff;
+}
+
+.sticky {
+    width: 30px;
+    height: 30px;
+    background-color: #74b51d;
+    position: sticky;
+    right: 0;
+    bottom: 40px;
+}

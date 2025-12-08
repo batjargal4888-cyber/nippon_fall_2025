@@ -1,0 +1,77 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Энэ бол "clearfix" арга юм. 
+   Энэ нь float ашиглах үед шаардлагатай сонгодог арга юм.
+   Энэ нь container-г өөрийн float-тай хүү элементүүдийг 
+   агуулахуйц тэлэх боломжийг олгож, байршлын нуралтаас сэргийлдэг.
+*/
+.gallery-container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* --- Position (Контекст) --- */
+.gallery-item {
+    position: relative;
+    /* Absolute давхаргын зангуу */
+
+    /* --- Байршил (float ашиглан) --- */
+    float: left;
+
+    /* --- Загварчлал --- */
+    width: 250px;
+    margin: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Зургийг container дотроо хариу үйлдэл үзүүлдэг болгох */
+.gallery-item img {
+    display: block;
+    /* Доод талын зайг арилгана */
+    width: 100%;
+}
+
+/* --- Position (Absolute Элемент) --- */
+.overlay {
+    position: absolute;
+    /* .gallery-item-тай харьцангуй байрлана */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1;
+    /* Зургийн дээр байрлана */
+
+    /* --- Display (Нуух/Харуулах) --- */
+    display: none;
+    /* Эхэндээ нуугдмал байна */
+
+    /* --- Загварчлал --- */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* gallery-item дээр хулганыг аваачихад давхаргыг харуулна */
+.gallery-item:hover .overlay {
+    display: block;
+    /* Харуулна! */
+}
+
+/* Давхарга доторх текстийн энгийн загвар */
+.overlay-text {
+    color: white;
+    font-size: 1.2rem;
+
+    /* Текстийг голлуулах өөр нэг position арга */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Орчин үеийн голлуулах арга */
+}
