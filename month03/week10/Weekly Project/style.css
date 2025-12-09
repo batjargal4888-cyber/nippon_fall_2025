@@ -1,0 +1,82 @@
+.background {
+    width: 1512px;
+    height: 982px;
+    background-color: #eff3bf;
+    margin: auto;
+    position: relative;
+}
+
+.card {
+    text-align: center;
+    width: 510px;
+    height: 755px;
+    background-color: #ffffff;
+    border-radius: 64px;
+    margin: auto;
+    position: relative;
+    top: 113.5px;
+}
+
+.box {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 510px;
+    height: 139px;
+    border-top-left-radius: 64px;
+    border-top-right-radius: 64px;
+    background-color: #973150;
+}
+
+.wave {
+    z-index: 0;
+    position: relative;
+    top: 90px;
+}
+
+.avatar {
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    position: absolute;
+    top: 10px;
+    left: 155px;
+    box-shadow: rgb(0, 0, 0, 0.25);
+}
+
+.name {
+    position: absolute;
+    width: 281px;
+    height: 45px;
+    color: rgba(0, 0, 0, 1);
+    font-family: roboto;
+    font-size: 38px;
+    font-weight: 500;
+    font-style: medium;
+    line-height: 45px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    left: calc(50% - 281px/2 - 0.5px);
+    top: 290px;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(./font/RobotoFlex-VariableFont_GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf);
+}
+
+.tag {
+    position: absolute;
+    width: 100px;
+    height: 19px;
+    left: calc(50% - 100px/2);
+    top: 365px;
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+}
