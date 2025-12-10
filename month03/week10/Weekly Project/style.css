@@ -15,6 +15,7 @@
     margin: auto;
     position: relative;
     top: 113.5px;
+    box-shadow: 0px 4px 44px 0px rgba(0, 0, 0, 0.25);
 }
 
 .box {
@@ -58,7 +59,7 @@
     letter-spacing: 0.05em;
     text-align: center;
     left: calc(50% - 281px/2 - 0.5px);
-    top: 290px;
+    top: 90px;
     font-style: normal;
 }
 
@@ -72,11 +73,69 @@
     width: 100px;
     height: 19px;
     left: calc(50% - 100px/2);
-    top: 365px;
+    top: 170px;
     font-family: roboto;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.body {
+    height: 600px;
+    position: relative;
+}
+
+.logos {
+    position: relative;
+    width: 320px;
+    height: 32px;
+    top: 250px;
+    left: calc(50% - 320px/2 - 0.5px);
+}
+
+.logos img {
+    margin: 0 14px;
+}
+
+.parag {
+    position: absolute;
+    width: 350px;
+    height: 75px;
+    font-family: roboto;
+    font-weight: 400;
+    font-style: regular;
+    size: 100px;
+    line-height: 25px;
+    top: 300px;
+    left: calc(50% - 350px/2 - 0.5px);
+}
+
+.buttons {
+    position: absolute;
+    height: 60px;
+    width: 430px;
+    left: calc(50% - 430px/2 - 0.5px);
+    top: 450px;
+}
+
+.buttons button {
+    width: 180px;
+    margin: 0 15px;
+    height: 60px;
+    padding: 16px;
+    border-radius: 30px;
+}
+
+.message {
+    color: rgba(131, 131, 131, 1);  
+    background-color: white;
+    border: 1px solid rgba(131, 131, 131, 1);
+}
+
+.follow {
+    background-color: rgba(223, 63, 140, 1);
+    border: none;
+    color: white;
 }
