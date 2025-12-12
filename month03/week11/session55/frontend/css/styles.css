@@ -1,0 +1,49 @@
+/* universal selector buyu buh elements */
+* {
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+main {
+    max-width: 1000px;
+    background-color: yellow;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+section {
+    max-width: 800px;
+    margin: auto;
+    background-color: yellowgreen;
+    height: 80vh;
+}
+
+article {
+    /* display: inline-block; */
+    height: 150px;
+    width: 150px;
+    background-color: tomato;
+    color: white;
+    font-size: 30px;
+    border: 3px solid brown;
+    text-align: center;
+    /* margin-left: 30px; */
+}
+/* flexbox */
+
+.flex-container {
+    /* flexbox setup */
+    display: flex;
+    /* column, row */
+    /* flex-direction: column-reverse; */
+    justify-content: space-evenly;
+    /* wrap buyu aguulga n bagtahgui bol hugalna */
+    flex-wrap: wrap;
+    /* bosoo tenhlegiin daguu elementiig bairshuulah */
+    align-items: center;
+    gap: 40px;
+}
+
+.flex-container article:nth-child(3) {
+    order: -1;
+}
