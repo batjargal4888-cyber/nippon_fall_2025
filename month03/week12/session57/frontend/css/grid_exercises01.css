@@ -1,0 +1,27 @@
+main {
+    max-width: 900px;
+    height: 100vh;
+    background-color: yellow;
+    margin: 0 auto;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    gap: 10px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.grid-cell {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    width: 200px;
+    height: 200px;
+    background-color: tomato;
+    color: white;
+    border: 2px solid black;
+}

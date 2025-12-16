@@ -1,0 +1,148 @@
+/* Universal Selector */
+* {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 220px repeat(3, 1fr);
+    grid-template-rows: 60px auto 1fr 50px;
+    grid-template-areas:
+        "header header header header"
+        "sidebar card1 card2 card3"
+        "sidebar main main main"
+        "footer footer footer footer"
+    ;
+    gap: 15px;
+    min-height: 100vh;
+    padding: 15px;
+    background-color: #ecf0f1;
+}
+
+.header {
+    grid-area: header;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    border-radius: 8px;
+}
+
+.header h1 {
+    font-size: 22px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sidebar h3 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4a6278;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    color: #3498db;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.card1 {
+    grid-area: card1;
+    border-top: 4px solid #3498db;
+}
+
+.card1 p {
+    color: #3498db;
+}
+
+.card2 {
+    grid-area: card2;
+    border-top: 4px solid #2ecc71;
+}
+
+.card2 p {
+    color: #3498db;
+}
+
+.card3 {
+    grid-area: card3;
+    border-top: 4px solid #e74c3c;
+}
+
+.card3 p {
+    color: #e74c3c;
+}
+
+.main {
+    grid-area: main;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.chart-placeholder {
+    height: 200px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7f8c8d;
+    margin-top: 20px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 14px;
+}
