@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Navbar (Mobile default) ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #222;
+    color: white;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Hamburger visible on mobile */
+.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Nav links hidden on mobile */
+.nav-links {
+    display: none;
+}
+
+/* ===== Desktop (768px+) ===== */
+@media (min-width: 768px) {
+    /* Hide hamburger */
+    .hamburger {
+        display: none;
+    }
+
+    /* Show nav links */
+    .nav-links {
+        display: flex;
+        gap: 24px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+    }
+}

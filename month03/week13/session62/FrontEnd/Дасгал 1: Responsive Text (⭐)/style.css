@@ -1,0 +1,30 @@
+/* ===== Mobile (default) ===== */
+h1 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 14px;
+}
+
+/* ===== Tablet (768px ба түүнээс дээш) ===== */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+/* ===== Desktop (992px ба түүнээс дээш) ===== */
+@media (min-width: 992px) {
+    h1 {
+        font-size: 48px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+}

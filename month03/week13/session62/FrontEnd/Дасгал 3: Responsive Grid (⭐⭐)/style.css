@@ -1,0 +1,28 @@
+/* ===== Grid (Mobile default: 1 column) ===== */
+.grid-container {
+    display: grid;
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid black;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+/* ===== Tablet (768px – 991px): 2 columns ===== */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== Desktop (992px+): 3 columns ===== */
+@media (min-width: 992px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
