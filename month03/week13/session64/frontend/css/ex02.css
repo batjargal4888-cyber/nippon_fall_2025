@@ -1,0 +1,35 @@
+.box {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.linear {
+    transition: transform 1s linear;
+}
+
+.ease {
+    transition: transform 1s ease;
+}
+
+.ease-in {
+    transition: transform 1s ease-in;
+}
+
+.ease-out {
+    transition: transform 1s ease-out;
+}
+
+.ease-in-out {
+    transition: transform 1s ease-in-out;
+}
+
+.box:hover {
+    transform: translateX(200px);
+}

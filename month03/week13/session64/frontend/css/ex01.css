@@ -1,0 +1,39 @@
+main {
+    max-width: 600px;
+    height: 60vh;
+    background-color: yellowgreen;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transition {
+    height: 300px;
+    width: 300px;
+    background-color: tomato;
+    /* transition */
+    transition: background-color 1.5s ease-in 0.5s;
+}
+
+.transition:hover {
+    background-color: blue;
+}
+
+/* card */
+
+.card {
+    height: 100px;
+    width: 100px;
+    background-color: aliceblue;
+    transform: scale(1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* transition many properties */
+    transition: background-color 0.8s, transform 0.8s, box-shadow 0.8s;
+}
+
+.card:hover {
+    background-color: #f8f8f8;
+    transform: scale(1.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
