@@ -1,34 +1,51 @@
 import java.util.Scanner;
 
 public class Exercise03 {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("===== NUMBER PARSER =====");
 
-        System.out.print("Текст оруулна уу (гарах: exit): ");
+        while (true) {
+            System.out.print("Текст оруулна уу (гарах: exit): ");
+            String input = scanner.nextLine();
 
-        String input = scanner.nextLine();
-        
-        try {
-            if ("exit".equalsIgnoreCase(input)) {
-                throw new ExitException();
+            // exit
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Баяртай!");
+                break;
             }
-            String text = input.trim();
-            System.out.println("Бүхэл тоо: " + Integer.parseInt(text));
-            System.out.println("Бутархай тоо: " + Double.parseDouble(text));
-        } catch (NumberFormatException e) {
+
+            // хоосон шалгах
+            if (input == null || input.trim().isEmpty()) {
+                System.out.println("Алдаа: Хоосон текст оруулсан байна!");
+                System.out.println();
+                continue;
+            }
+
             try {
-                System.out.println("Бүхэл тоо биш!");
-                System.out.println("Бутархай тоо: " + Double.parseDouble(input));
-            } catch (NumberFormatException ex) {
+                // Эхлээд Double шалгана
+                double doubleValue = Double.parseDouble(input);
+
+                // Integer шалгах
+                try {
+                    int intValue = Integer.parseInt(input);
+                    System.out.println("Бүхэл тоо: " + intValue);
+                } catch (NumberFormatException e) {
+                    System.out.println("Бүхэл тоо биш!");
+                }
+
+                // Double хэвлэх
+                System.out.println("Бутархай тоо: " + doubleValue);
+
+            } catch (NumberFormatException e) {
                 System.out.println("Алдаа: \"" + input + "\" нь тоо биш!");
             }
-        } catch (NullPointerException e) {
-            System.out.println("Алдаа: Хоосон текст оруулсан!");
-        } catch (ExitException e) {
-            System.out.println("Баяртай!");
-        } finally {
-            scanner.close();
+
+            System.out.println();
         }
+
+        scanner.close();
     }
 }
