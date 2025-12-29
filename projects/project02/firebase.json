@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "nippon-fall-2025-batja-805cd",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

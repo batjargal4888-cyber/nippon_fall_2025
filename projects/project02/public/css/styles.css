@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+}
+
+main {
+    max-width: 900px;
+    background-color: turquoise;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(42, 164, 99);
+    border-radius: 50%;
+    margin: auto;
+}
