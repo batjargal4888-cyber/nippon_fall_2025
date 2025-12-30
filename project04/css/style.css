@@ -37,13 +37,14 @@ body {
 
 .menu {
     font-family: "Lato", sans-serif;
-    text-align: center;
     margin-top: 31.5px;
     font-weight: 600;
     font-style: SemiBold;
     font-size: 20px;
     line-height: 100%;
     letter-spacing: 0%;
+    position: absolute;
+    left: calc((1440px - 584.9px) / 2);
 }
 
 .menu ul {
@@ -97,5 +98,86 @@ body {
     position: absolute;
     left: 1236px;
     background-color: rgba(75, 171, 102, 1);
+    border: none;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: calc(1080px - 86px);
+}
+
+.hero img {
+    width: 552px;
+    height: 598.18px;
+    position: absolute;
+    top: calc(281px - 86px);
+    left: 64px;
+}
+
+.hero-text h1 {
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+    font-style: Bolder;
+    font-size: 48px;
+    line-height: 65px;
+    letter-spacing: 0%;
+    color: rgba(33, 33, 33, 1);
+    width: 647.75px;
+    height: 130px;
+    position: absolute;
+    top: calc(402px - 86px);
+    left: 728px;
+}
+
+.hero-text p {
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    color: rgba(33, 33, 33, 1);
+    width: 648px;
+    height: 96px;
+    position: absolute;
+    top: calc(556px - 86px);
+    left: 728px;
+}
+
+.button3 {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(255, 255, 255, 1);
+    width: 202px;
+    height: 58px;
+    top: calc(700px - 86px);
+    border-radius: 8px;
+    padding: 16px 32px;
+    position: absolute;
+    left: 728px;
+    background-color: rgba(75, 171, 102, 1);
+    border: none;
+}
+
+.button4 {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(33, 33, 33, 1);
+    width: 240px;
+    height: 58px;
+    top: calc(700px - 86px);
+    border-radius: 8px;
+    padding: 16px 32px;
+    position: absolute;
+    left: 962px;
+    background-color: rgba(216, 227, 146, 1);
     border: none;
 }
