@@ -511,7 +511,7 @@ body {
     width: 30px;
     height: 27px;
     position: absolute;
-    top: 100px;
+    top: 110px;
     transform: translateY(-50%);
     left: calc((1920px - 1320px) / 2 + 10px);
 }
@@ -523,7 +523,7 @@ body {
     line-height: 100%;
     letter-spacing: 0%;
     position: absolute;
-    top: 100px;
+    top: 110px;
     transform: translateY(-50%);
     left: calc((1920px - 1320px) / 2 + 50px);
 }
@@ -536,7 +536,7 @@ body {
     line-height: 150%;
     width: 306px;
     height: 96px;
-    top: 140px;
+    top: 150px;
     left: calc((1920px - 1320px) / 2 + 10px);
 }
 
@@ -548,6 +548,91 @@ body {
     line-height: 100%;
     width: 306px;
     height: 33px;
-    top: 100px;
-    left: 700px;
+    top: 95px;
+    left: 660px;
+}
+
+.contact .p1 {
+    position: absolute;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    width: 306px;
+    height: 48px;
+    top: 150px;
+    left: 660px;
+}
+
+.contact .p2 {
+    position: absolute;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    width: 306px;
+    height: 48px;
+    top: 205px;
+    left: 660px;
+}
+
+.follow h1 {
+    position: absolute;
+    font-family: "Alegreya", serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    width: 306px;
+    height: 33px;
+    top: 95px;
+    left: 50%;
+}
+
+.follow .ig {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 160px;
+    left: 50%;
+}
+
+.follow .tiktok {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 160px;
+    left: calc(50% + 60px);
+}
+
+.follow .youtube {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 160px;
+    left: calc(50% + 120px);
+}
+
+.info h1 {
+    position: absolute;
+    font-family: "Alegreya", serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    width: 306px;
+    height: 33px;
+    top: 95px;
+    left: calc(50% + 340px);
+}
+
+.info ul {
+    position: absolute;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    width: 306px;
+    height: 100px;
+    top: 150px;
+    left: calc(50% + 340px);
+    list-style: none;
 }
