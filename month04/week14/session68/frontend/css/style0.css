@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+}
+
+/* ===== CARD ===== */
+
+.card {
+    position: relative;
+    width: 320px;
+    border: 1px solid;
+    padding: 40px;
+    border-radius: 16px;
+    color: #fff;
+
+    /* Multi-layer background */
+
+    background:
+        linear-gradient(135deg, #667eea, #764ba2);
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ===== PATTERN OVERLAY ===== */
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.2) 2px, transparent 2px);
+    background-size: 12px 12px;
+
+    opacity: 0.4;
+}
+
+/* ===== CONTENT ===== */
+
+.card h1,
+.card p {
+    position: relative;
+    z-index: 2;
+}
+
+.card h1 {
+    margin-bottom: 12px;
+    font-size: 24px;
+}
+
+.card p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ===== HOVER EFFECT ===== */
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
