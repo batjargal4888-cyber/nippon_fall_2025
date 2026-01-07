@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class Exercise03 {
     private ArrayList<Product> products;
@@ -7,6 +8,8 @@ public class Exercise03 {
     public Exercise03() {
         products = new ArrayList<>();
     }
+
+    private static final DecimalFormat PRICE_DECIMAL_FORMAT = new DecimalFormat("#,##0.00");
 
     // 1. add
     private void addProduct(String name, double price, int quantity) {
@@ -21,7 +24,7 @@ public class Exercise03 {
         for (Product p : products) {
             if (p.getName().equalsIgnoreCase(name)) {
                 System.out.println("🔍 Олдлоо: " + p.getName()
-                        + " | Үнэ: " + p.getPrice()
+                        + " | Үнэ: " + PRICE_DECIMAL_FORMAT.format(p.getPrice())
                         + " | Тоо: " + p.getQuantity());
                 found = true;
             }
@@ -54,7 +57,7 @@ public class Exercise03 {
         int index = 1;
         for (Product p : products) {
             System.out.println(index + ". " + p.getName()
-                    + " | Үнэ: " + p.getPrice()
+                    + " | Үнэ: " + PRICE_DECIMAL_FORMAT.format(p.getPrice())
                     + " | Тоо: " + p.getQuantity());
             index++;
         }
@@ -71,7 +74,7 @@ public class Exercise03 {
         for (Product p : products)
             total += p.totalPrice();
 
-        System.out.println("💰 Нийт үнэ: " + total + "₮");
+        System.out.println("💰 Нийт үнэ: " + PRICE_DECIMAL_FORMAT.format(total) + " ₮");
     }
 
     // 6. show out of stock
@@ -80,7 +83,7 @@ public class Exercise03 {
 
         for (Product p : products) {
             if (p.getQuantity() == 0) {
-                System.out.println("⚠️ Дууссан: " + p.getName());
+                System.out.println("⚠️  Дууссан: " + p.getName());
                 found = true;
             }
         }
@@ -109,7 +112,7 @@ public class Exercise03 {
 
         while (true) {
             System.out.println();
-            System.out.println("Сонголт: ");
+            System.out.print("Сонголт: ");
             String input = sc.nextLine();
 
             if (input.equals("7")) {
@@ -118,13 +121,13 @@ public class Exercise03 {
             }
 
             if (input.equals("1")) {
-                System.out.println("Нэр: ");
+                System.out.print("Нэр: ");
                 String name = sc.nextLine();
 
-                System.out.println("Үнэ: ");
+                System.out.print("Үнэ: ");
                 double price = Double.parseDouble(sc.nextLine());
 
-                System.out.println("Нэр: ");
+                System.out.print("Тоо: ");
                 int quantity = Integer.parseInt(sc.nextLine());
 
                 addProduct(name, price, quantity);
@@ -140,7 +143,7 @@ public class Exercise03 {
                 System.out.print("Нэр: ");
                 String name = sc.nextLine();
 
-                System.out.print("Шинэ тоо: ");
+                System.out.print("Тоо ширхэгийг өөрчлөх: ");
                 int quantity = Integer.parseInt(sc.nextLine());
 
                 updateQuantity(name, quantity);
