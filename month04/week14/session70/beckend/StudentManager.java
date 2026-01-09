@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,8 +21,8 @@ public class StudentManager {
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
                     String name = parts[0];
-                    int age = Integer.parseInt(parts[1]);
-                    double score = Double.parseDouble(parts[2]);
+                    int age = Integer.parseInt(parts[1].trim());
+                    double score = Double.parseDouble(parts[2].trim());
                     students.add(new Student(name, age, score));
                 }
             }
@@ -35,9 +36,9 @@ public class StudentManager {
     public void saveStudentToFile(Student student) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("students.csv", true))) {
             // Format: name,age,score
-            String line =   student.getName() + "," +
-                            student.getAge() + "," +
-                            student.getScore();
+            String line = student.getName() + "," +
+                    student.getAge() + "," +
+                    student.getScore();
             writer.write(line);
             writer.newLine();
         } catch (IOException e) {
@@ -78,23 +79,21 @@ public class StudentManager {
         int i = 1;
         for (Student s : students) {
             System.out.printf(
-            "│ %-2d │ %-14s │ %-3d │ %-7.1f │%n",
-                    i++, s.getName(), s.getAge(), s.getScore()
-            );
+                    "│ %-2d │ %-14s │ %-3d │ %-7.1f │%n",
+                    i++, s.getName(), s.getAge(), s.getScore());
         }
         System.out.println("└─────────────────────────────────────┘");
     }
 
     // 3. Дундаж оноо
-    public void acerageScore() {
+    public void averageScore() {
         ArrayList<Student> students = loadStudentsFromFile();
         double sum = 0;
         for (Student s : students) {
             sum += s.getScore();
         }
         System.out.printf("📊 Дундаж оноо: %.2f%n",
-                                    sum / students.size()
-        );
+                sum / students.size());
     }
 
     // 4. Шилдэг оюутан
@@ -123,10 +122,30 @@ public class StudentManager {
         System.out.println("❌ Олдсонгүй");
     }
 
+    // Зөвхөн оноо өөрчлөхөд хэрэгтэй method
+    public void saveAllStudents(ArrayList<Student> students) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("students.csv"))) { // append = false
+
+            for (Student s : students) {
+                writer.write(s.getName() + "," +
+                        s.getAge() + "," +
+                        s.getScore());
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Файлд бичихэд алдаа гарлаа.");
+        }
+    }
+
     // 6. Оноо шинэчлэх
     public void updateScore() {
         ArrayList<Student> students = loadStudentsFromFile();
-        System.out.println("Оюутны нэр: ");
+        if (students.isEmpty()) {
+            System.out.println("⚠️ Оюутан алга");
+            return;
+        }
+        System.out.print("Оюутны нэр: ");
         String name = sc.nextLine();
         for (Student s : students) {
             if (s.getName().equalsIgnoreCase(name)) {
@@ -134,7 +153,7 @@ public class StudentManager {
                 double newScore = sc.nextDouble();
                 sc.nextLine();
                 s.setScore(newScore);
-                saveStudentToFile(s);
+                saveAllStudents(students);
                 System.out.println("✅ Оноо шинэчлэгдлээ!");
                 return;
             }
