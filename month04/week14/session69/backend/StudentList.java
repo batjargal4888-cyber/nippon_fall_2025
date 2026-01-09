@@ -1,16 +1,17 @@
-public class Student {
+public class StudentList {
 
     private String name;
     private int age;
     private double score;
 
-    public Student(String name, int age, double score) {
+    // Constructor
+    public StudentList(String name, int age, double score) {
         this.name = name;
         this.age = age;
         this.score = score;
     }
 
-    // Getters
+    // Getter
     public String getName() {
         return name;
     }
@@ -23,21 +24,18 @@ public class Student {
         return score;
     }
 
-    // Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
+    // Setter (оноо өөрчлөхөд хэрэгтэй)
     public void setScore(double score) {
         this.score = score;
     }
 
+    // CSV хэлбэрт оруулах
+    public String toCSV() {
+        return name + ", " + age + ", " + score;
+    }
+
     @Override
     public String toString() {
-        return name + " (Нас: " + age + ", Оноо: " + score + ")";
+        return name + " | Нас: " + age + " | Оноо: " + score;
     }
 }
