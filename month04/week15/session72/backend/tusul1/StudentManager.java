@@ -165,19 +165,20 @@ public class StudentManager {
         }
 
         int count = students.size();
-        System.out.println("\n╔══════════════════════════════════════════════════╗");
-        System.out.println("║              📊 АНГИЙН СТАТИСТИК                 ║");
-        System.out.println("╠══════════════════════════════════════════════════╣");
-        System.out.println("║                                                  ║");
+        System.out.println("\n╔════════════════════════════════════════════════════╗");
+        System.out.println("║                📊 АНГИЙН СТАТИСТИК                 ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║                                                    ║");
 
-        System.out.printf("║  📈 Ангийн дундаж: %-29.2f ║%n", totalAvg / count);
-        System.out.printf("║  🥇 Шилдэг: %-21s (%.2f).        ║%n", best.getName(), best.getAverage());
-        System.out.printf("║  🔻 Хамгийн бага: %-18s (%.2f)      ║%n", worst.getName(), worst.getAverage());
+        System.out.printf("║  📈 Ангийн дундаж: %-30.2f  ║%n", totalAvg / count);
+        System.out.printf("║  🥇 Шилдэг:        %-15s (%.2f)         ║%n", best.getName(), best.getAverage());
+        System.out.printf("║  🔻 Хамгийн бага:  %-15s (%.2f)         ║%n", worst.getName(), worst.getAverage());
 
-        System.out.println("║                                                  ║");
-        System.out.println("╠══════════════════════════════════════════════════╣");
-        System.out.println("║           ҮНЭЛГЭЭНИЙ ТАРХАЛТ                     ║");
-        System.out.println("╠══════════════════════════════════════════════════╣");
+        System.out.println("║                                                    ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║                 ҮНЭЛГЭЭНИЙ ТАРХАЛТ                 ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║                                                    ║");
 
         for (String g : gradeCount.keySet()) {
             int c = gradeCount.get(g);
@@ -187,7 +188,7 @@ public class StudentManager {
 
             String bar = "";
             for (int i = 0; i < barLength; i++) {
-                bar += "██";
+                bar += "███";
             }
 
             String emoji = "";
@@ -210,12 +211,13 @@ public class StudentManager {
             }
 
             System.out.printf(
-                    "║  %s %s:  %2d (%5.1f%%) %-27s  ║%n",
+                    "║  %s %s: %2d (%5.1f%%) %-30s  ║%n",
                     emoji, g, c, percent, bar);
         }
 
-        System.out.println("║                                                  ║");
-        System.out.println("╠══════════════════════════════════════════════════╣");
+        System.out.println("║                                                    ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║                                                    ║");
 
         int passed = 0;
         int failed = 0;
@@ -233,14 +235,15 @@ public class StudentManager {
         double passedPercent = (double) passed / total * 100;
         double failedPercent = (double) failed / total * 100;
 
-        System.out.printf("║  ✅ Тэнцсэн: %-3d (%5.1f%%)                        ║%n",
+        System.out.printf("║  ✅ Тэнцсэн:   %3d (%3.2f%%)                       ║%n",
                 passed,
                 passedPercent);
 
-        System.out.printf("║  ❌ Тэнцээгүй: %d (%.1f%%)                        ║%n",
+        System.out.printf("║  ❌ Тэнцээгүй: %3d (%3.2f%%)                         ║%n",
                 failed,
                 failedPercent);
 
-        System.out.println("╚══════════════════════════════════════════════════╝");
+        System.out.println("║                                                    ║");
+        System.out.println("╚════════════════════════════════════════════════════╝");
     }
 }
