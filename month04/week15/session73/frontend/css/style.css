@@ -1,0 +1,126 @@
+/* THEME VARIABLES */
+:root {
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --text: #1a202c;
+    --accent: #667eea;
+}
+
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f1f5f9;
+    --accent: #38bdf8;
+}
+
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HERO */
+.hero {
+    height: 40vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    ),
+    url("https://plus.unsplash.com/premium_vector-1689096917660-9041bba693dc?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* CARD */
+.card {
+    background: var(--card-bg);
+    width: 300px;
+    margin: -70px auto 40px;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.stats {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* TOGGLE */
+.toggle {
+    margin: 15px auto;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+}
+
+.toggle.animate {
+    animation: glow 0.4s ease;
+}
+
+.icon {
+    display: inline-block;
+    font-size: 1.2rem;
+    transition: transform 0.6s ease;
+}
+
+.toggle.flip .icon {
+    transform: rotateY(180deg);
+}
+
+/* glow effect */
+@keyframes glow {
+    0% { box-shadow: 0 0 0 rgba(255, 255, 255, 0);}
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);}
+    100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0);}
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    
+}
+
+.social a img {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.social a:hover img {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.7;
+}
