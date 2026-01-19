@@ -1,0 +1,10 @@
+main {
+    width: 600px;
+    background-color: whitesmoke;
+    color: black;
+    height: 60vh;
+    margin: auto;
+}
+h1 {
+    text-align: center;
+}
