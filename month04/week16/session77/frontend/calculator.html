@@ -1,0 +1,81 @@
+`
+<!doctype html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Basics Demo</title>
+    <link rel="stylesheet" href="./css/calculator.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🌐 JavaScript Basics Demo</h1>
+
+        <!-- Variables Demo -->
+        <div class="card">
+            <h2>1. Variables - Хувьсагчид</h2>
+            <div class="input-group">
+                <label>Нэр оруулна уу:</label>
+                <input type="text" id="nameInput" placeholder="Таны нэр..." />
+            </div>
+            <div class="input-group">
+                <label>Нас оруулна уу:</label>
+                <input type="number" id="ageInput" placeholder="Таны нас..." />
+            </div>
+            <button onclick="showGreeting()">Мэндчилгээ харуулах</button>
+            <div id="greetingOutput" class="output" style="display: none"></div>
+        </div>
+
+        <!-- Data Types Demo -->
+        <div class="card">
+            <h2>2. Data Types - Өгөгдлийн Төрөл</h2>
+            <div class="input-group">
+                <label>Ямар нэгэн утга оруулна уу:</label>
+                <input type="text" id="typeInput" placeholder="Жишээ: 42, hello, true" />
+            </div>
+            <button onclick="checkType()">Төрөл шалгах</button>
+            <div id="typeOutput" class="output" style="display: none"></div>
+        </div>
+
+        <!-- Operators Demo -->
+        <div class="card">
+            <h2>3. Operators - Тооцоолуур</h2>
+            <div class="input-group">
+                <label>Эхний тоо:</label>
+                <input type="number" id="num1" placeholder="Эхний тоо" />
+            </div>
+            <div class="input-group">
+                <label>Хоёр дахь тоо:</label>
+                <input type="number" id="num2" placeholder="Хоёр дахь тоо" />
+            </div>
+            <button onclick="calculate('+')">+</button>
+            <button onclick="calculate('-')">−</button>
+            <button onclick="calculate('*')">×</button>
+            <button onclick="calculate('/')">÷</button>
+            <button onclick="calculate('%')">%</button>
+            <button onclick="calculate('**')">xⁿ</button>
+            <div id="calcOutput" class="output" style="display: none"></div>
+        </div>
+
+        <!-- Comparison Demo -->
+        <div class="card">
+            <h2>4. Comparison - Харьцуулалт</h2>
+            <div class="input-group">
+                <label>Утга 1:</label>
+                <input type="text" id="compare1" placeholder="Жишээ: 5" />
+            </div>
+            <div class="input-group">
+                <label>Утга 2:</label>
+                <input type="text" id="compare2" placeholder="Жишээ: '5'" />
+            </div>
+            <button onclick="compareValues()">Харьцуулах</button>
+            <div id="compareOutput" class="output" style="display: none"></div>
+        </div>
+    </div>
+
+    <script src="./js/calculator.js"></script>
+</body>
+
+</html>`

@@ -1,0 +1,10 @@
+console.log('JS DOM');
+document.writeln('This is from Javascript');
+document.writeln("<h4>This title is from JS</h4>");
+console.log('DOM query selector');
+const h2Title = document.getElementById('first-title');
+console.log(h2Title);
+h2Title.textContent = 'Hi';
+let h4Element = document.createElement('h4');
+h4Element.textContent = 'This is text Content of h4';
+h2Title.appendChild(h4Element);
