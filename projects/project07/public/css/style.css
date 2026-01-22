@@ -1,24 +1,41 @@
+/* =========================
+   RESET
+========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* =========================
+   BODY
+========================= */
+
 body {
     background-color: #8c9eff;
     min-height: 100vh;
     display: grid;
     place-items: center;
+    font-family: "Inter", sans-serif;
 }
+
+/* =========================
+   CALCULATOR
+========================= */
 
 .calculator {
     width: 616px;
     height: 841px;
     border-radius: 24px;
     background-color: #eeeeee;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
     position: relative;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .calculator-header {
     width: 100%;
@@ -26,14 +43,9 @@ body {
 }
 
 .calculator-header h1 {
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 23px;
-    line-height: 36.8px;
-    letter-spacing: 0%;
-    color: rgba(33, 33, 33, 1);
-    width: 49px;
-    height: 37px;
+    color: #212121;
     position: absolute;
     top: 45.5px;
     left: 32px;
@@ -49,23 +61,22 @@ body {
     border-radius: 32px;
     padding: 12px 16px;
     gap: 32px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.dark-btn {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: inherit;
-}
-
+.dark-btn,
 .light-btn {
     width: 32px;
     height: 32px;
     border: none;
-    background-color: inherit;
+    background: none;
+    cursor: pointer;
 }
+
+/* =========================
+   DISPLAY
+========================= */
 
 .display {
     width: 100%;
@@ -78,14 +89,9 @@ body {
 }
 
 .number1 {
-    font-family: "Inter", sans-serif;
     font-weight: 700;
     font-size: 33px;
-    line-height: 52.8px;
-    letter-spacing: 0.25px;
-    color: rgba(33, 33, 33, 1);
-    width: 38px;
-    height: 53px;
+    color: #212121;
     position: absolute;
     top: 125px;
     left: 514px;
@@ -103,18 +109,17 @@ body {
 }
 
 .number2 {
-    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 58px;
-    line-height: 100%;
-    letter-spacing: -0.5%;
-    color: rgba(33, 33, 33, 1);
-    width: 90px;
-    height: 70px;
+    color: #212121;
     position: absolute;
     top: 181px;
     left: 494px;
 }
+
+/* =========================
+   BUTTON GRID
+========================= */
 
 .buttons {
     width: 616px;
@@ -122,40 +127,39 @@ body {
     position: absolute;
     top: 289px;
     border-radius: 24px;
-    background-color: rgba(250, 250, 250, 1);
+    background-color: #fafafa;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     padding: 32px;
 }
 
+/* =========================
+   BUTTON BASE
+========================= */
+
 .btn {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 33px;
-    line-height: 52.8px;
-    letter-spacing: 0.25px;
-    color: rgba(33, 33, 33, 1);
     width: 114px;
     height: 72px;
-    border-radius: 8px;
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
-    
     padding: 4px;
     border: none;
-    background-color: radial-gradient(
-        rgba(0, 0, 0, 0.08),
-        rgba(255, 255, 255, 0),
-    );
     border-radius: 16px;
+    cursor: pointer;
+
+    background: radial-gradient(
+        circle at top,
+        rgba(0, 0, 0, 0.12),
+        rgba(255, 255, 255, 0)
+    );
+
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-inner {
     width: 100%;
     height: 64px;
-
-    background: rgba(255, 255, 255, 1);
-    color: rgba(33, 33, 33, 1);
+    background-color: #ffffff;
+    color: #212121;
 
     display: flex;
     align-items: center;
@@ -163,7 +167,15 @@ body {
 
     border-radius: 12px;
 
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* =========================
+   HOVER & ACTIVE (GENERAL)
+========================= */
+
+.btn:not(.equal):active .btn-inner {
+    background-color: rgba(33, 33, 33, 0.12);
 }
 
 .btn:hover .btn-inner {
@@ -177,6 +189,15 @@ body {
 
 .btn.equal .btn-inner {
     background-color: rgba(239, 83, 80, 1);
+}
+
+.btn.equal:hover .btn-inner {
+    background-color: rgba(211, 47, 47, 1);
+}
+
+.btn.equal:active .btn-inner {
+    background-color: rgba(198, 40, 40, 1);
+    transform: scale(0.92);
 }
 
 .btn.blue .btn-inner {
