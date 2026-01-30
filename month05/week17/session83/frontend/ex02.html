@@ -5,6 +5,7 @@
     <style>
         .highlight {
             background-color: yellow;
+            background: yellow;
         }
 
         .bold {
@@ -13,6 +14,10 @@
 
         .hidden {
             display: none;
+        }
+
+        .active {
+            border: 2px solid blue;
         }
     </style>
 </head>
@@ -35,9 +40,14 @@
 
     <a id="myLink" href="https://old.com" target="_blank">Click</a>
     <img id="myImg" src="old.jpg" alt="Old image">
-    <div id="card" data-product-id="456" data-category="electronics">
+    <div id="card" data-product-id="456" data-category="electronics"></div>
 
-        <script src="./js/ex2.js"></script>
+    <div id="box" class="box">Box</div>
+
+    <ul id="todo-list"></ul>
+    <div id="cards"></div>
+
+    <script src="./js/ex2.js"></script>
 </body>
 
 </html>

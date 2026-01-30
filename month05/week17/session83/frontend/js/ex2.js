@@ -129,35 +129,129 @@ if (link.hasAttribute("href")) {
 // JavaScript - Styles
 // ===================
 
-// ==================
-// Element Styles
-// ==================
+// HTML: <div id="box" class="box">Box</div>
+// CSS: .highlight { background: yellow; }
+//      .active { border: 2px solid blue; }
+//      .hidden { display: none; }
 
-const title = document.getElementById("title");
+const box = document.getElementById("box");
 
-// Inline style (style property)
-title.style.color = "red";
-title.style.fontSize = "24px";
-title.style.backgroundColor = "lightblue";
+// 1. Inline style-аар background color тавих
+box.style.backgroundColor = "red";
 
-// Multiple styles with Object.assign
-Object.assign(title.style, {
-    color: "white",
-    backgroundColor: "black",
-    padding: "10px"
-});
+// 2. Font size өөрчлөх (camelCase!)
+box.style.fontSize = "20px";
 
-// classList - class удирдах
-title.classList.add("highlight");
-title.classList.add("bold");
-title.classList.remove("highlight");
-// title.classList.toggle("hidden"); // байвал хасна, байхгүй бол нэмнэ
+// 3. Border тавих
+box.style.border = "2px solid black";
 
-console.log(title.classList.contains("bold")); // true
+// 4. highlight class нэмэх
+box.classList.add("highlight");
 
-// Replace class
-title.classList.replace("bold", "highlight");
+// 5. active class toggle хийх
+box.classList.toggle("active");
 
-// Multiple classes нэг дор
-title.classList.add("class1", "class2", "class3");
-title.classList.remove("class1", "class2");
+if (box.classList.contains("active")) {
+    console.log("Is active");
+} else {
+    console.log("Not active");
+}
+
+// 6. box class байгаа эсэхийг шалгах
+if (box.classList.contains("box")) {
+    console.log("Has box class");
+}
+
+// 7. highlight-г active-аар солих
+box.classList.replace("highlight", "active");
+
+// 8. Олон class нэг дор нэмэх
+box.classList.add("hidden", "active");
+
+// =================================
+// Бөглөх дасгал - Creating Elements
+// =================================
+
+// HTML: <ul id="todo-list"></ul>
+//       <div id="cards"></div>
+
+const todoList = document.getElementById("todo-list");
+const cards = document.getElementById("cards");
+
+// 1. Шинэ li element үүсгэх
+const li = document.createElement("li");
+console.log(li);
+
+// 2. li-д текст оруулах
+li.textContent = "New task";
+
+// 3. li-д class нэмэх
+li.className = "todo-item";
+
+// 4. todoList-ийн төгсгөлд нэмэх
+todoList.appendChild(li);
+
+// 5. Шинэ li үүсгээд эхэнд нэмэх
+const firstLi = document.createElement("li");
+firstLi.textContent = "First task";
+todoList.prepend(firstLi);
+
+// 6. Card div үүсгэх
+const card2 = document.createElement("div");
+card2.className = "card";
+card2.innerHTML = `
+    <h3>Card Title</h3>
+    <p>Card content</p>
+`;
+console.log(card2);
+
+// 7. cards div-д нэмэх
+cards.appendChild(card2);
+
+// 8. Delete button үүсгээд card-д нэмэх
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Delete";
+deleteBtn.onclick = function() {
+    card2.remove    ();  // Card2-г устгах
+};
+card2.appendChild(deleteBtn);
+
+// 9. insertAdjacentHTML ашиглан HTML нэмэх
+todoList.insertAdjacentHTML("beforeend", "<li>Last item</li>");
+
+// ================================
+// 📝 Бөглөх дасгал - Todo Function
+// ================================
+
+// Card үүсгэх функц бичих
+function createCard(title, content) {
+    // 1. Card div үүсгэх
+    const card = document.createElement("div");
+    card.className = "card";
+
+    // 2. Title h3 үүсгэх
+    const h3 = document.createElement("h3");
+    h3.textContent = title;
+
+    // 3. Content p үүсгэх
+    const p = document.createElement("p");
+    p.textContent = content;
+
+    // 4. Delete button үүсгэх
+    const btn = document.createElement("button");
+    btn.textContent = "Delete";
+    btn.onclick = () => card.remove();
+
+    // 5. Бүгдийг card-д нэмэх
+    card.appendChild(h3);
+    card.appendChild(p);
+    card.appendChild(btn);
+
+    // 6. Card буцаах
+    return card;
+}
+
+// Ашиглах
+const container = document.getElementById("container");
+const card1 = createCard("Title 1", "Content 1");
+container.appendChild(card1);
