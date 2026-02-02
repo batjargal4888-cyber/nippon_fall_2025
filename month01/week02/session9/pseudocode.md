@@ -86,3 +86,62 @@ PRINT message
 ---
 
 ## Ex 7: Area of a Circle
+
+**Ex:**
+Ask for the radius of a circle & calculate the area using π = 3.14.
+
+**Pseudocode answer:**
+INPUT radius
+SET pi = 3.14
+SET area = pi * radius * radius
+PRINT "Circle area: " + area
+
+---
+
+## Ex 8: Fun Sentence
+
+**Ex:**
+Ask for an animal name & a verb, then create a sentence.
+
+**Pseudocode answer:**
+INPUT animal
+INPUT verb
+SET sentence = "A " + animal + " was " + verb + " ing."
+PRINT sentence
+
+---
+
+## Ex 9: Convert Meters to Centimeters
+
+**Ex:**
+Ask for a length in meters & convert it to centimeters.
+
+**Pseudocode answer:**
+INPUT meters
+SET centimeters = meters * 100
+PRINT meters + " meters is equal to " + centimeters + " centimeters."
+
+---
+
+## Ex 10: Combine 1st & Last Name
+
+**Ex:**
+Ask for the user's last name & 1st name, then greet them using the full name.
+
+**Pseudocode answer:**
+INPUT lastName
+INPUT firstName
+SET fullName = firstName + " " + lastName
+PRINT "Welcome, " + fullName + "!"
+
+---
+
+## Final Note
+This file represents logic design, not executable code.
+The same pseudocode can later be translated into:
+- Shell script
+- JavaScript
+- Java
+- Python
+
+> Write logic once. Code it anywhere.

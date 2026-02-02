@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Todo</title>
+    <style>
+        .todo-app {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        #todoInput {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #addBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .todo-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #ecf0f1;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="todo-app">
+        <h1>Хийх Ажлын Жагсаалт</h1>
+        <div>
+            <input type="text" id="todoInput" placeholder="Шинэ ажил оруулна уу">
+            <button id="addBtn">Нэмэх</button>
+        </div>
+        <div id="todoList"></div>
+    </div>
+
+    <script src="./js/todo-list.js"></script>
+</body>
+
+</html>
