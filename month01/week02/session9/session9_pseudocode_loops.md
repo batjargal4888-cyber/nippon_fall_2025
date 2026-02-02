@@ -1,8 +1,6 @@
 # Week 2 — Thursday
 ## Pseudocode Exercises: Loops (FOR / WHILE)
 
----
-
 ### Exercise 1: Count from 1 to 10
 This algorithm prints numbers from 1 to 10.
 
