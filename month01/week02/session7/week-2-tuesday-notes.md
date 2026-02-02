@@ -1,70 +1,105 @@
-# Week 02 - Tuesday
-## Machine Language: Binary & Data
+# Week 2 - Tuesday
+## Machine learning: Binary & Data
 
-### 🎯 Day Goal
-Understanding how all data inside a computer is represented using **binary (0 & 1)**, learn the **binary number system**, & understand how **text is encoded using ASCII**.
-
----
-
-## Topics Covered
-
-### Binary System
-- Computers use **binary** because hardware works with 2 states (on/off)
-- Binary
-
-# Week 02 – Tuesday  
-## Machine Language: Binary and Data
-
-### 🎯 Day Goal
-Understand how all data inside a computer is represented using **binary (0 and 1)**, learn the **binary number system**, and understand how **text is encoded using ASCII**.
+### 🎯 Daily Goal
+Understand how all data inside a computer is represented using **1s & 0s**, learn the **binary number system**, & understand how **test is encoded using ASCII**.
 
 ---
 
-## Topics Covered
+## 1. Everything in a Computer is Binary
 
-### Binary System
-- Computers use **binary** because hardware works with two states (on/off)
-- Binary digits are called **bits**
-- 8 bits = **1 byte**
-- Binary numbers are base-2 (0 and 1 only)
+- Computers do not understand numbers, letters, or images directly.
+- They only understand **binary states**:
+  - `1` = ON
+  - `0` = OFF
+- All data (numbers, text, program, files) is stored as **bit patterns**.
 
-### Number Systems
-- **Decimal (base-10)** – used by humans
-- **Binary (base-2)** – used by computers
-- **Hexadecimal (base-16)** – compact binary representation
-- Practiced converting between decimal and binary
-
-### Data Representation
-- Numbers are stored as binary values
-- Text is stored as numeric codes
-- Characters are represented using **ASCII**
-
-### ASCII Encoding
-- ASCII maps characters to numbers
-- Example:
-  - 'A' → 65 → 01000001
-  - 'a' → 97
-- Computers store text as binary, not letters
+Key idea:
+> Different data types are just different interpretations of the same bits.
 
 ---
 
-## In-class Practice
-- Binary ↔ Decimal conversions
-- Understanding bits and bytes
-- Reading ASCII tables
-- Simple encoding and decoding exercises
+## 2. Bits & Bytes
+
+- **Bit** = smallest unit of data (`0` or `1`)
+- **Byte** = 8 bits
+- Bytes are the basic unit for storing data
+
+Example:
+- `01000001` (8 bits) = 1 byte
 
 ---
 
-## Assignments
-- Practice number system conversions
-- Deep dive exercises on binary and ASCII
-- Optional task: combining Shell, Git, and number systems
+## 3. Numbers Systems
+
+### Decimal (Base 10)
+- Used by humans
+- Digits: `0-9`
+
+### Binary (Base 2)
+- Used by computers
+- Digits: `0` & `1`
+- Each position represents a power of 2
+
+Example:
+- Binary `1010` = Decimal `10`
+
+### Hexadecimal (Base 16)
+- Compact representaion of binary
+- Digits: `0-9` & `A-F`
+- Often used for memory addresses, colors, debugging
+
+Example:
+- Binary `1010` = Hex `A`
 
 ---
 
-## Key Takeaways
-- All data in a computer is binary
-- Binary is the foundation of machine language
-- Text, numbers, and symbols are all encoded as numbers
-- Understanding binary helps explain how computers really work
+## 4. Binary place values
+
+Each binary digit represents a power of 2:
+
+| Position | Value |
+|----------|-------|
+|   1st    |   1   |
+|   2nd    |   2   |
+|   3rd    |   4   |
+|   4th    |   8   |
+|   5th    |  16   |
+
+Examples:
+- Binary `1101`
+- = 8 + 4 + 1
+- = Decimal `13`
+
+---
+
+## 5. How Text Is Stored (ASCII)
+
+- Text characters are stored as **numbers**
+- ASCII assigns a number to each character
+- That number is stored in binary
+
+Examples:
+- `A` -> 65 -> `01000001`
+- `a` -> 97
+- Space, newline, & tab are also characters
+
+Importand:
+- Uppercase & lowercase letters have different codes
+- Text files are just sequences of bytes
+
+---
+
+## 6. Why This Matters
+
+- Explains how terminals display text
+- Helps understand file encoding issues
+- Foundation forr:
+  - Shel
+  - Git
+  - Memory
+  - Debugging
+  - Permissions
+
+  Core insight:
+  > Inside a computer, there are no letters or numbers - only bits.
