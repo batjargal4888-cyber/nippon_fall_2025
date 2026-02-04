@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Дасгал 2.2: Tab</title>
+    <style>
+        .tabs-container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-bottom: 3px solid #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs-container">
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="profile">Профайл</button>
+            <button class="tab-button" data-tab="settings">Тохиргоо</button>
+            <button class="tab-button" data-tab="notifications">Мэдэгдэл</button>
+        </div>
+
+        <div class="tab-content active" id="profile">
+            <h2>Профайл</h2>
+            <p>Энд профайл мэдээлэл харуулна.</p>
+            <p>Нэр, и-мэйл хаяг, профайл зураг гэх мэт.</p>
+        </div>
+
+        <div class="tab-content" id="settings">
+            <h2>Тохиргоо</h2>
+            <p>Програмын тохиргоог удирдана.</p>
+            <p>Хэл, загвар, мэдэгдлийн тохиргоо гэх мэт.</p>
+        </div>
+
+        <div class="tab-content" id="notifications">
+            <h2>Мэдэгдэл</h2>
+            <p>Сүүлийн мэдэгдлүүдийг харуулна.</p>
+            <p>Мессеж, анхааруулга, сануулга гэх мэт.</p>
+        </div>
+    </div>
+
+    <script src="./js/ex2-2.js"></script>
+</body>
+
+</html>

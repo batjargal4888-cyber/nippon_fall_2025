@@ -1,53 +1,39 @@
-console.log('JS file loaded');
-
-// 1. Get elements from the DOM
+// 1. DOM Elements Selection
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
 
-// 2. Function to add a new todo
-function addTodo() {
-    const text = todoInput.value.trim(); // remove extra spaces
+// 2. Add Button Click Event
+addBtn.addEventListener('click', () => {
 
-    // 3. Validation: empty input
-    if (text === '') {
-        alert('Ажил оруулна уу');
+    // 3. Get Input Value
+    const taskText = todoInput.value;
+
+    // 4. Empty Input Validation
+    if (taskText === "") {
+        alert ("Ажлын нэрээ оруулна уу!");
         return;
     }
 
-    // 4. Create todo item container
+    // 5. Create a New Todo Item Element
     const todoItem = document.createElement('div');
-    todoItem.className = 'todo-item';
+    todoItem.classList.add('todo-item');
 
-    // 5. Create text span
-    const todoText = document.createElement('span');
-    todoText.textContent = text;
+    // 6. Insert Content Inside the Todo Item
+    todoItem.innerHTML = `
+        <span>${taskText}</span>
+        <button class="delete-btn">Устгах</button>
+        `;
 
-    // 6. Create delete button
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.textContent = 'Устгах';
+    // 7. Add Todo Item to the List
+    todoList.appendChild(todoItem);
 
-    // 7. Delete event
-    deleteBtn.addEventListener('click', function () {
-        todoList.removeChild(todoItem);
+    // 8. Clear the Input Field
+    todoInput.value = "";
+
+    // 9. Add Delete Functionality
+    const deleteBtn = todoItem.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', () => {
+        todoItem.remove();
     });
-
-    // 8. Append elements
-    todoItem.appendChild(span);
-    todoItem.appendChild(deleteBtn);
-    todoItem.appendChild(todoItem);
-
-    // 9. Clear input
-    todoInput.value = '';
-}
-
-// 10. Click event
-addBtn.addEventListener('click', addTodo);
-
-// 11. Enter key event
-todoInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        addTodo();
-    }
 });

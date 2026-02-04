@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Fetch User Example</h1>
+    <button id="loadUser">Load User</button>
+    <div id="result"></div>
+    <script>
+        // get button & result elements
+        const loadBtn = document.getElementById('loadUser');
+        const result = document.getElementById('result');
+        // fetch user data on button click
+        loadBtn.addEventListener('click', () => {
+            result.textContent = 'Loading...';
+            fetch('https://jsonplaceholder.typicode.com/users/1')
+                .then(response => response.json())
+                .then(user => {
+                    result.innerHTML = `
+                        <p><strong>Name:</strong> ${user.name}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                    `;
+                })
+                .catch(error => {
+                    result.textContent = `Error loading data`;
+                });
+        });
+    </script>
+</body>
+
+</html>
