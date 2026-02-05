@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main id="products"></main>
+
+    <script>
+        const productElement = document.getElementById('products');
+        const PRODUCTS_API = 'https://dummyjson.com/products'; // API - application programming interface
+
+        fetch(PRODUCTS_API)
+            .then((response) => response.json())
+            .then((data) => {
+                const products = data.products;
+                console.log(products);
+                for (let i = 0; i < products.length; i++) {
+                    console.log(products[i].title);
+
+                    // product title
+                    const productTitle = document.createElement('h2');
+                    productTitle.textContent = products[i].title;
+                    productElement.appendChild(productTitle);
+
+                    // product img
+                    const productImage = document.createElement('img');
+                    productImage.src = products[i].images[0];
+                    productImage.width = '300';
+                    productImage.height = '300';
+                    productElement.appendChild(productImage);
+                }
+            })
+    </script>
+
+</body>
+
+</html>

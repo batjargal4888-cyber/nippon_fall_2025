@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>promise exercise 01</h1>
+    <script>
+        setTimeout(() => {
+            console.log('time out function');
+        }, 400);
+
+        // shineer promise uusgeed setTimeout function ashiglan 3 secondiin daraa 
+        // promise called gej console deer hewledeg bolgono uu
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('promise called');
+                resolve('done');
+            }, 3000);
+        });
+        // promise-g duudah
+        myPromise.then(result => {
+            console.log("promise result:", result);
+        });
+
+        // ex 1
+        function addOne(number) {
+            // 0.5 secondiin daraa ugugdsun too n dandaa 1-eer nemegddeg bolgono uu
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(number + 1);
+                }, 500);
+            });
+        }
+        addOne(5)
+            .then(result => {
+                console.log(result); // 6
+                return addOne(result);
+            })
+            .then(result => {
+                console.log(result); // 7
+                return addOne(result);
+            })
+            .then(result => {
+                console.log(result); // 8
+            });
+
+        // ex 2
+        // enehuu function n promise butsaana. 1 (umnuh dasgaluudiin araas oruulahiin tuld 4000 ms gew) 
+        // secondiin daraa sanamsarguigeer
+        // if tolgoi 0.5-s ih baiwal Heads gej resolve hiih, baga baiwal Tails gej reject
+        // hiideg hariug gargana uu.
+        // Math.random()>0.5=>Heads
+        function flipCoin() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const random = Math.random();
+                    console.log("random number:", random);
+
+                    if (random > 0.5) {
+                        resolve("heads");
+                    } else {
+                        reject("tails");
+                    }
+                }, 4000);
+            });
+        }
+        // test:
+        flipCoin()
+            .then(result => console.log("You got:", result))
+            .catch(result => console.log("you got:", result));
+
+        // ex 3
+        // validationPassword(password) gedeg function todorhoilno uu
+        // enehuu function n promise butsaana.
+        // if password parameter ur n 8-s ih baiwal
+        // password is valid
+        // baga bol pass ig short gej print bolgono uu. Uuniig reject deer hiigeerei.
+        function validatePassword(password) {
+            return new Promise((resolve, reject) => {
+                if (password.length >= 8) {
+                    resolve("password is valid");
+                } else {
+                    reject("password is short");
+                }
+            });
+        }
+        // test:
+        validatePassword('hello')
+            .then(result => console.log(result))
+            .catch(err => console.log(err));
+        validatePassword('securepassword')
+            .then(result => console.log(result))
+            .catch(err => console.log(err));
+    </script>
+</body>
+
+</html>

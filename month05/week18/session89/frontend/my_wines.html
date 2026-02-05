@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS ashiglan goy designtai bolgoh -->
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #wineList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        #wineList div {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #wineList img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        #wineList h3 {
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        #wineList p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        #wineList div:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Wines</h1>
+    <div id="wineList"></div>
+
+    <script>
+        const WINE_API = 'https://api.sampleapis.com/wines/reds';
+        // deerh API duudaad irsen datanii wine eswel winery bolon img-iig DOM ashiglan
+        // haruuldag code bichne uu. FETCH ashiglah
+        const wineList = document.getElementById("wineList");
+        fetch(WINE_API)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(wine => {
+                    console.log(wine);
+                    const card = document.createElement("div");
+                    card.innerHTML = `
+                        <img src="${wine.image}">
+                        <h3>${wine.wine}</h3>
+                        <p>${wine.winery}</p> 
+                    `;
+                    wineList.appendChild(card);
+                });
+            });
+    </script>
+</body>
+
+</html>
