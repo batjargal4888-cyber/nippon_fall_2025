@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Local Storage</h1>
+
+    <main>
+        <form>
+            <input type="text">
+            <button type="submit">Save</button>
+        </form>
+
+        <div id="result">
+
+        </div>
+    </main>
+
+    <script>
+        const result = document.getElementById('result');
+        // Save button deer darahad input deer baigaa text result deer hardag bolgono.
+        const inputValue = document.querySelector('form input');
+        const form = document.querySelector('form');
+
+        result.textContent = localStorage.getItem("inputValue");
+
+        // inputValue deer haruulna uu
+        inputValue.value = localStorage.getItem('inputValue');
+
+        // HashMap<Integer, String>
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            result.textContent = inputValue.value;
+            localStorage.setItem('inputValue', inputValue.value);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 50px;
+            transition: background-color 0.3s,
+                color 0.3s;
+            min-height: 100vh;
+        }
+
+        body.light {
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        body.dark {
+            background-color: #222222;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .light button {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark button {
+            background-color: #fff;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body class="light">
+    <div class="container">
+        <h1>Them Switcher</h1>
+        <p>This page remembers your theme preference!</p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe hic laudantium beatae explicabo eveniet
+            delectus fugiat vel libero nostrum adipisci, distinctio quidem repellendus? Totam consectetur id veniam.
+            Assumenda, veniam quis!
+        </p>
+        <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <script>
+        const body = document.body;
+
+        // Page load bolohod hadgalsan theme-g unshih
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            body.className = savedTheme;
+        } else {
+            body.className = 'light'; // default
+        }
+
+        // Theme solih function
+        function toggleTheme() { // nertei function
+            if (body.classList.contains('light')) {
+                body.className = 'dark';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.className = 'light';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
+</body>
+
+</html>
