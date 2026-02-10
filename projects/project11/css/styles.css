@@ -1,0 +1,30 @@
+/* .page {
+    max-width: 1512px;
+    background-color: #f5f7fb;
+}
+
+.pokemon-container {
+    width: 322px;
+    height: 260px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 11px 20px 0 rgba(145, 145, 145, 0.16);
+}
+
+.pokemon-container img {
+    width: 180px;
+    height: 134px;
+    display: block;
+    margin: 0 auto;
+    transform: translateY(-50%);
+}
+
+.pokemon-title {
+    text-transform: capitalize;
+    font-weight: 700;
+    font-style: bold;
+}
+
+.pokemon-id {
+    font-size: 50px;
+} */

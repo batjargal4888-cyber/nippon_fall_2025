@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pokedex Fetch Starter</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+    <main class="page">
+        <!-- Header: title, search, sort, filter -->
+        <header class="header">
+            <h1 class="title">Pokédex</h1>
+            <div class="search-row">
+                <div class="search">
+                    <input id="searchInput" type="text" placeholder="Pokemon name, number or type" autocomplete="off" />
+                </div>
+                <button id="searchBtn" class="btn primary">Search</button>
+            </div>
+
+            <div class="toolbar">
+                <select id="sortSelect" class="select">
+                    <option value="number-asc">Lowest Number First</option>
+                    <option value="number-desc">Highest Number First</option>
+                    <option value="name-asc">Alphabetically (A-Z)</option>
+                    <option value="name-desc">Alphabetically (Z-A)</option>
+                </select>
+
+                <button id="filterBtn" class="btn ghost">Filters</button>
+            </div>
+        </header>
+
+        <!-- Pokemon card grid -->
+        <section>
+            <div id="cards" class="grid"></div>
+            <div id="loader" class="loader">Loading...</div>
+        </section>
+    </main>
+
+    <!-- Filter side panel -->
+    <div id="filterPanel" class="panel hidden">
+        <div class="panel-head">
+            <h3>Filters</h3>
+            <button id="filterClose" class="btn ghost">Close</button>
+        </div>
+        <div class="panel-body">
+            <div class="filter-group">
+                <p class="filter-title">Type</p>
+                <div id="typeFilters" class="filter-list"></div>
+            </div>
+        </div>
+        <div class="panel-actions">
+            <button id="filterReset" class="btn ghost">Reset</button>
+            <button id="filterApply" class="btn primary">Apply</button>
+        </div>
+    </div>
+
+    <!-- Pokemon detail modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-card">
+            <div class="modal-head">
+                <h3 id="modalTitle">Details</h3>
+                <button id="modalClose" class="btn ghost">Close</button>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
