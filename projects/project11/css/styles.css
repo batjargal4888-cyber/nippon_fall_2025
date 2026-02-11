@@ -1,30 +1,352 @@
-/* .page {
-    max-width: 1512px;
-    background-color: #f5f7fb;
+/* =========================
+   1. DESIGN TOKENS
+========================= */
+
+:root {
+    --bg-page: #f4f5f8;
+    --text-primary: #1e1e1e;
+    --text-muted: #6b7280;
+    --white: #ffffff;
+
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+    /* Type colors */
+    --type-grass: #5fbf4a;
+    --type-fire: #f26457;
+    --type-water: #4aa3df;
+    --type-bug: #9dbf3b;
+    --type-poison: #b97fc9;
+    --type-flying: #6fa8dc;
+    --type-normal: #c7c7c7;
+    --type-electric: #ffd84d;
+    --type-ground: #d6a24f;
+    --type-dark: #3a3a3a;
+    --type-dragon: #4f7cff;
+    --type-ice: #7dd6f7;
+    --type-steel: #9aa3ad;
+    --type-ghost: #7b5cd6;
+    --type-fairy: #f8a5d1;
 }
+
+/* =========================
+   2. BASE
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: var(--bg-page);
+    color: var(--text-primary);
+}
+
+.page {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 48px 64px;
+}
+
+/* =========================
+   3. HEADER
+========================= */
+
+.header {
+    margin-bottom: 40px;
+}
+
+.title {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    margin-bottom: 40px;
+}
+
+/* =========================
+   4. SEARCH
+========================= */
+
+.search-row {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 8px 8px 8px 18px;
+    box-shadow: 0 11px 20px 0 rgba(145, 145, 145, 0.16);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.search-row svg {
+    flex-shrink: 0;
+}
+
+.search {
+    flex: 1;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+}
+
+.search input::placeholder {
+    color: rgba(65, 110, 223, 1);
+    opacity: 1;
+}
+
+.search-row .btn.primary {
+    background: rgba(255, 206, 49, 1);
+    border-radius: 8px;
+    padding: 10px 50px;
+    border: none;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.2s ease;
+    color: rgba(65, 110, 223, 1);
+}
+
+/* =========================
+   5. TOOLBAR
+========================= */
+
+
+
+/* =========================
+   6. BUTTONS
+========================= */
+
+.btn {
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: var(--type-electric);
+    color: #333;
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid #ddd;
+}
+
+.btn.ghost:hover {
+    background: #eee;
+}
+
+/* =========================
+   7. GRID
+========================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+/* =========================
+   8. POKEMON CARD
+========================= */
 
 .pokemon-container {
-    width: 322px;
-    height: 260px;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 11px 20px 0 rgba(145, 145, 145, 0.16);
+    position: relative;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    color: white;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
-.pokemon-container img {
-    width: 180px;
-    height: 134px;
-    display: block;
-    margin: 0 auto;
-    transform: translateY(-50%);
+.pokemon-container:hover {
+    transform: translateY(-6px);
+}
+
+.pokemon-img {
+    width: 120px;
+    position: absolute;
+    top: -30px;
+    right: 10px;
 }
 
 .pokemon-title {
-    text-transform: capitalize;
+    font-size: 22px;
     font-weight: 700;
-    font-style: bold;
+    margin-top: 60px;
+    text-transform: capitalize;
 }
 
 .pokemon-id {
-    font-size: 50px;
-} */
+    font-size: 14px;
+    opacity: 0.85;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pokemon-type {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* =========================
+   9. TYPE BACKGROUNDS
+========================= */
+
+.type-grass {
+    background: var(--type-grass);
+}
+
+.type-fire {
+    background: var(--type-fire);
+}
+
+.type-water {
+    background: var(--type-water);
+}
+
+.type-bug {
+    background: var(--type-bug);
+}
+
+.type-poison {
+    background: var(--type-poison);
+}
+
+.type-flying {
+    background: var(--type-flying);
+}
+
+.type-normal {
+    background: var(--type-normal);
+    color: #333;
+}
+
+.type-electric {
+    background: var(--type-electric);
+    color: #333;
+}
+
+.type-ground {
+    background: var(--type-ground);
+}
+
+.type-dark {
+    background: var(--type-dark);
+}
+
+.type-dragon {
+    background: var(--type-dragon);
+}
+
+.type-ice {
+    background: var(--type-ice);
+    color: #333;
+}
+
+.type-steel {
+    background: var(--type-steel);
+}
+
+.type-ghost {
+    background: var(--type-ghost);
+}
+
+.type-fairy {
+    background: var(--type-fairy);
+    color: #333;
+}
+
+/* =========================
+   10. LOADER
+========================= */
+
+.loader {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+}
+
+/* =========================
+   11. PANEL (FILTER)
+========================= */
+
+.panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100%;
+    background: white;
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* =========================
+   12. MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: white;
+    width: 400px;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+/* =========================
+   13. RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 32px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
