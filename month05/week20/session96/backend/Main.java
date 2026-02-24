@@ -44,5 +44,18 @@ public class Main {
         circle.describe();
         System.out.printf("Талбай: %.2f\n", circle.area());
         circle.describe("улаан");
+
+        // Ex 6
+        System.out.println("\nEx 6");
+        
+        Warrior warrior = new Warrior("Болд");
+        Paladin paladin = new Paladin("Артур");
+
+        warrior.showInfo();
+        warrior.attack();
+
+        paladin.showInfo();
+        paladin.attack();
+        paladin.heal();
     }
 }
