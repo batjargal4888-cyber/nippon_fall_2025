@@ -104,88 +104,72 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 322px);
+    justify-content: center;
     gap: 32px;
+    height: 260px;
 }
-
-/* ===== POKEMON CARD ===== */
 
 .pokemon-card {
     position: relative;
-    border-radius: 24px;
-    padding: 24px;
-    min-height: 260px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: white;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
+    border-radius: 16px;
+    height: 260px;
+    margin-top: 40px;
+    padding-left: 24px;
 }
-
-.pokemon-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.15);
-}
-
-/* ===== IMAGE ===== */
 
 .pokemon-img {
+    width: 180px;
+    height: 180px;
     position: absolute;
-    top: -30px;
-    right: 10px;
-    width: 150px;
-    z-index: 2;
+    top: -62px;
+    left: 71px;
 }
 
-/* ===== NAME ===== */
-
-.pokemon-name {
-    font-size: 20px;
+.pokemon-card h3 {
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-size: 28px;
     font-weight: 700;
-    z-index: 2;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 1);
+    top: 119px;
 }
 
-/* ===== ID ===== */
-
-.pokemon-id {
-    opacity: 0.7;
-    font-size: 14px;
-    margin-bottom: 12px;
-    z-index: 2;
+.pokemon-card p {
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    top: 160px;
 }
-
-/* ===== TYPES ===== */
 
 .pokemon-types {
     display: flex;
     gap: 8px;
-    z-index: 2;
+    margin-top: 201px;
 }
 
 .type-badge {
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #212121;
+    font-family: "Roboto", sans-serif;
+    width: 86px;
+    height: 35px;
+    border-radius: 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 4px;
 }
 
-/* ===== Decorative Background Circle ===== */
+.type-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
 
-.pokemon-card::after {
-    content: "";
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    bottom: -40px;
-    left: -40px;
-    z-index: 0;
+.type-icon svg {
+    width: 16px;
+    height: 16px;
 }
