@@ -1,49 +1,32 @@
-console.log("Pokedex App Started");
-
 // ===== DOM =====
 const cardsContainer = document.getElementById("cards");
-
-// ===== STATE =====
-let offset = 0;
-const limit = 50;
-let isLoading = false;
 
 // ===== API =====
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
 // ===== FETCH LIST =====
 async function fetchPokemons() {
-    if (isLoading) return;
-
-    isLoading = true;
 
     try {
-        const response = await fetch(
-            `${BASE_URL}?limit=${limit}&offset=${offset}`
-        );
 
+        const response = await fetch(`${BASE_URL}?limit=1010`);
         const data = await response.json();
 
-        const pokemonList = data.results;
-
-        // Detail-үүдийг зэрэг татах (хурдан)
-        const detailPromises = pokemonList.map(p =>
+        const detailPromises = data.results.map(p =>
             fetch(p.url).then(res => res.json())
         );
 
         const details = await Promise.all(detailPromises);
 
+        allPokemons = details;
+
         details.forEach(pokemon => {
             renderPokemon(pokemon);
         });
 
-        offset += limit;
-
     } catch (error) {
         console.error("Алдаа гарлаа:", error);
     }
-
-    isLoading = false;
 }
 
 // ===== BACKGROUND COLORS =====
@@ -107,7 +90,7 @@ const pokemonIcons = {
     'ice': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_52_36668)"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0094 1.22009L12.0586 5.54354L8.28771 7.35375L8.24121 3.2716L12.0094 1.22009Z" fill="#212121"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7894 8.03273L12.0565 10.168L8.32129 8.02936L12.0545 6.06836L15.7894 8.03273Z" fill="#212121"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7.65762 8.03273L3.92465 10.168L0.189453 8.02936L3.92272 6.06836L7.65762 8.03273Z" fill="#212121"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3.88281 1.20239L7.75738 3.12132L7.65831 7.30307L4 5.49126L3.88281 1.20239Z" fill="#212121"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12.1148 14.7977L8.24023 12.8788L8.3393 8.69702L11.9976 10.5089L12.1148 14.7977Z" fill="#212121"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.01605 14.8367L3.9668 10.5132L7.73777 8.703L7.78427 12.7851L4.01605 14.8367Z" fill="#212121"/></g><defs><clipPath id="clip0_52_36668"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>`,
     'dragon': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.77194 7.96503C8.88038 7.89891 8.97237 7.76034 9.04656 7.60634C10.023 8.00541 10.7091 8.94841 10.7091 10.0481C10.7091 11.5091 9.49819 12.6934 8.00444 12.6934C7.39125 12.6934 6.82572 12.4938 6.37206 12.1575C6.22325 12.087 6.10081 12.0193 6.00063 11.9639C5.84522 11.878 5.74331 11.8217 5.6795 11.8305C5.49297 11.8562 5.54713 12.0278 5.59634 12.1837C5.62975 12.2896 5.66091 12.3883 5.61269 12.429C5.56225 12.4716 5.39888 12.3158 5.20797 12.1338C4.94809 11.886 4.63722 11.5896 4.49063 11.6787C4.37472 11.7491 4.48725 11.94 4.625 12.1738L4.63522 12.1911C4.69341 12.2899 4.76084 12.3906 4.82238 12.4824C4.94747 12.669 5.04822 12.8193 4.99781 12.8448C4.93688 12.8755 4.51231 12.589 4.15453 12.1911C4.01644 12.0376 3.88269 11.8712 3.75838 11.7165V11.7165C3.48628 11.3779 3.25959 11.0959 3.13234 11.1293C2.97927 11.1695 3.09507 11.4852 3.26522 11.7891C3.34478 11.9312 3.43838 12.0758 3.51941 12.2011V12.2012C3.64544 12.396 3.74109 12.5438 3.70641 12.562C3.65959 12.5865 3.24769 12.1848 2.96792 11.6787C2.80175 11.378 2.66222 11.0457 2.54925 10.7768C2.42675 10.4851 2.3355 10.2678 2.27541 10.2459C2.06664 10.1699 2.06664 10.5956 2.15037 11.2099C2.16129 11.2901 2.17756 11.3742 2.19759 11.4598C3.00959 14.087 5.504 16 8.45522 16C12.0651 16 14.9915 13.1379 14.9915 9.60725C14.9915 6.24688 12.3406 3.49209 8.9725 3.23419C8.97675 3.07589 9.05937 2.76197 9.05937 2.76197C9.05937 2.76197 9.65397 1.32335 9.68541 1.01593C9.68747 0.995531 9.68994 0.973359 9.69259 0.949747C9.72962 0.617591 9.79853 0 9.26722 0C8.98347 0 8.85153 0.211083 8.70063 0.452497C8.64269 0.545175 8.58194 0.642328 8.50875 0.733719C7.98163 1.39199 7.09525 2.21403 6.59266 2.65197C5.53034 3.57762 4.48809 4.33838 3.88022 4.78206L3.88019 4.78209C3.60372 4.98387 3.41713 5.12009 3.35938 5.17637C2.92419 5.60063 1.36381 8.41519 1.36381 8.41519C1.36381 8.41519 0.859197 9.31819 1.03856 9.50134C1.21792 9.68447 1.65044 9.6425 1.65044 9.6425C1.65044 9.6425 7.46109 8.30947 7.98131 8.20434C8.12138 8.17603 8.22025 8.15969 8.29616 8.14716C8.50225 8.11313 8.53925 8.107 8.77194 7.96503ZM4.66359 6.252C4.35169 6.54847 3.83441 7.25612 3.83441 7.25612C3.83441 7.25612 4.79578 7.31534 5.32525 6.81206C5.85475 6.30875 5.73344 5.45103 5.73344 5.45103C5.73344 5.45103 4.97547 5.95553 4.66359 6.252Z" fill="#212121"/></svg>`,
     'dark': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.77194 7.96503C8.88038 7.89891 8.97237 7.76034 9.04656 7.60634C10.023 8.00541 10.7091 8.94841 10.7091 10.0481C10.7091 11.5091 9.49819 12.6934 8.00444 12.6934C7.39125 12.6934 6.82572 12.4938 6.37206 12.1575C6.22325 12.087 6.10081 12.0193 6.00063 11.9639C5.84522 11.878 5.74331 11.8217 5.6795 11.8305C5.49297 11.8562 5.54713 12.0278 5.59634 12.1837C5.62975 12.2896 5.66091 12.3883 5.61269 12.429C5.56225 12.4716 5.39888 12.3158 5.20797 12.1338C4.94809 11.886 4.63722 11.5896 4.49063 11.6787C4.37472 11.7491 4.48725 11.94 4.625 12.1738L4.63522 12.1911C4.69341 12.2899 4.76084 12.3906 4.82238 12.4824C4.94747 12.669 5.04822 12.8193 4.99781 12.8448C4.93688 12.8755 4.51231 12.589 4.15453 12.1911C4.01644 12.0376 3.88269 11.8712 3.75838 11.7165V11.7165C3.48628 11.3779 3.25959 11.0959 3.13234 11.1293C2.97927 11.1695 3.09507 11.4852 3.26522 11.7891C3.34478 11.9312 3.43838 12.0758 3.51941 12.2011V12.2012C3.64544 12.396 3.74109 12.5438 3.70641 12.562C3.65959 12.5865 3.24769 12.1848 2.96792 11.6787C2.80175 11.378 2.66222 11.0457 2.54925 10.7768C2.42675 10.4851 2.3355 10.2678 2.27541 10.2459C2.06664 10.1699 2.06664 10.5956 2.15037 11.2099C2.16129 11.2901 2.17756 11.3742 2.19759 11.4598C3.00959 14.087 5.504 16 8.45522 16C12.0651 16 14.9915 13.1379 14.9915 9.60725C14.9915 6.24688 12.3406 3.49209 8.9725 3.23419C8.97675 3.07589 9.05937 2.76197 9.05937 2.76197C9.05937 2.76197 9.65397 1.32335 9.68541 1.01593C9.68747 0.995531 9.68994 0.973359 9.69259 0.949747C9.72962 0.617591 9.79853 0 9.26722 0C8.98347 0 8.85153 0.211083 8.70063 0.452497C8.64269 0.545175 8.58194 0.642328 8.50875 0.733719C7.98163 1.39199 7.09525 2.21403 6.59266 2.65197C5.53034 3.57762 4.48809 4.33838 3.88022 4.78206L3.88019 4.78209C3.60372 4.98387 3.41713 5.12009 3.35938 5.17637C2.92419 5.60063 1.36381 8.41519 1.36381 8.41519C1.36381 8.41519 0.859197 9.31819 1.03856 9.50134C1.21792 9.68447 1.65044 9.6425 1.65044 9.6425C1.65044 9.6425 7.46109 8.30947 7.98131 8.20434C8.12138 8.17603 8.22025 8.15969 8.29616 8.14716C8.50225 8.11313 8.53925 8.107 8.77194 7.96503ZM4.66359 6.252C4.35169 6.54847 3.83441 7.25612 3.83441 7.25612C3.83441 7.25612 4.79578 7.31534 5.32525 6.81206C5.85475 6.30875 5.73344 5.45103 5.73344 5.45103C5.73344 5.45103 4.97547 5.95553 4.66359 6.252Z" fill="#212121"/></svg>`,
-    'fairy': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.21019 12.6868L5.7765 11.9427L7.99306 15.9955C7.99597 16.0008 8.0035 16.0008 8.00638 15.9955L10.2229 11.9427L12.7893 12.6868C12.795 12.6885 12.8004 12.6831 12.7987 12.6774L12.0544 10.1618L15.9955 8.00638C16.0008 8.0035 16.0008 7.99597 15.9955 7.99309L12.0219 5.81984L12.7987 3.19453C12.8004 3.18878 12.795 3.18344 12.7893 3.18509L10.1628 3.94669L8.00638 0.00394338C8.0035 -0.00131436 7.99597 -0.00131451 7.99309 0.00394338L5.83672 3.94669L3.21019 3.18509C3.20444 3.18344 3.19909 3.18878 3.20081 3.19453L3.97753 5.81984L0.00394338 7.99309C-0.00131436 7.99597 -0.00131451 8.0035 0.00394338L3.94503 10.1618L3.20081 12.6774C3.19909 12.6831 3.20444 12.6885 3.21019 12.6868ZM5.20162 8.02738L7.01972 9.02172L8.01406 10.8398C8.01694 10.8451 8.0245 10.8451 8.02738 10.8398L9.02172 9.02172L10.8398 8.02738C10.845 8.0245 10.845 8.01694 10.8398 8.01406L9.02172 7.01972L8.02738 5.20166C8.0245 5.19637 8.01694 5.19637 8.01406 5.20166L7.01972 7.01972L5.20162 8.01406C5.19637 8.01694 5.19637 8.0245 5.20162 8.02738Z" fill="#212121"/></svg>`,
+    'fairy': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.21019 12.6868L5.7765 11.9427L7.99306 15.9955C7.99597 16.0008 8.0035 16.0008 8.00638 15.9955L10.2229 11.9427L12.7893 12.6868C12.795 12.6885 12.8004 12.6831 12.7987 12.6774L12.0544 10.1618L15.9955 8.00638C16.0008 8.0035 16.0008 7.99597 15.9955 7.99309L12.0219 5.81984L12.7987 3.19453C12.8004 3.18878 12.795 3.18344 12.7893 3.18509L10.1628 3.94669L8.00638 0.00394338C8.0035 -0.00131436 7.99597 -0.00131451 7.99309 0.00394325L5.83672 3.94669L3.21019 3.18509C3.20444 3.18344 3.19909 3.18878 3.20081 3.19453L3.97753 5.81984L0.00394338 7.99309C-0.00131436 7.99597 -0.00131451 8.0035 0.00394325 8.00638L3.94503 10.1618L3.20081 12.6774C3.19909 12.6831 3.20444 12.6885 3.21019 12.6868ZM5.20162 8.02738L7.01972 9.02172L8.01406 10.8398C8.01694 10.8451 8.0245 10.8451 8.02738 10.8398L9.02172 9.02172L10.8398 8.02738C10.845 8.0245 10.845 8.01694 10.8398 8.01406L9.02172 7.01972L8.02738 5.20166C8.0245 5.19637 8.01694 5.19637 8.01406 5.20166L7.01972 7.01972L5.20162 8.01406C5.19637 8.01694 5.19637 8.0245 5.20162 8.02738Z" fill="#212121"/></svg>`,
     'electric': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.76741 0.0182393C4.76432 0.00931125 4.77097 0 4.78041 0H10.4001C10.4061 0 10.4114 0.00392459 10.4132 0.00968069L12.9944 8.34909C12.9971 8.35794 12.9905 8.36691 12.9813 8.36691H9.24003C9.23547 8.36691 9.23219 8.37125 9.23344 8.37566L11.3791 15.9289C11.3833 15.9436 11.3641 15.9532 11.3549 15.941L3.01646 4.85209C3.00964 4.84303 3.01611 4.83009 3.02744 4.83009H6.42291C6.42763 4.83009 6.43094 4.82544 6.42938 4.82097L4.76741 0.0182393Z" fill="#212121"/></svg>`,
     'steel': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_52_36676)"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.00159721 7.95397C-0.000531394 7.95034 -0.000532462 7.94584 0.00159436 7.94219L4.02484 1.06826C4.02694 1.06469 4.03078 1.0625 4.03491 1.0625H12.0092C12.0133 1.0625 12.0172 1.06471 12.0193 1.06831L15.9984 7.94225C16.0005 7.94584 16.0005 7.95031 15.9984 7.95391L12.0193 14.8201C12.0172 14.8237 12.0133 14.8259 12.0092 14.8259H4.03491C4.03078 14.8259 4.02694 14.8238 4.02484 14.8202L0.00159721 7.95397ZM11.7068 7.94422C11.7068 9.99072 10.0478 11.6497 8.00125 11.6497C5.95475 11.6497 4.29572 9.99072 4.29572 7.94422C4.29572 5.89769 5.95475 4.23869 8.00125 4.23869C10.0478 4.23869 11.7068 5.89769 11.7068 7.94422Z" fill="#212121"/></g><defs><clipPath id="clip0_52_36676"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>`,
 };
@@ -186,18 +169,245 @@ function renderPokemon(pokemon) {
     card.appendChild(id);
     card.appendChild(typeContainer);
 
+    card.addEventListener("click", () => {
+        openModal(pokemon);
+    });
+
     cardsContainer.appendChild(card);
 }
 
-// ===== SCROLL EVENT =====
-window.addEventListener("scroll", () => {
-    if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 200
-    ) {
-        fetchPokemons();
+// ===== INIT =====
+fetchPokemons();
+
+// ===== SEARCH =====
+let allPokemons = [];
+
+function performSearch(value) {
+
+    const searchValue = value.toLowerCase().trim();
+
+    cardsContainer.innerHTML = "";
+
+    if (searchValue === "") {
+        allPokemons.forEach(pokemon => {
+            renderPokemon(pokemon);
+        });
+        return;
+    }
+
+    const filtered = allPokemons.filter(pokemon =>
+        pokemon.name.includes(searchValue) ||
+        String(pokemon.id).includes(searchValue) ||
+        pokemon.types.some(t =>
+            t.type.name.includes(searchValue)
+        )
+    );
+
+    filtered.forEach(pokemon => {
+        renderPokemon(pokemon);
+    });
+}
+
+// enter event
+const searchInput = document.querySelector(".search input");
+
+searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        performSearch(this.value);
     }
 });
 
-// ===== INIT =====
-fetchPokemons();
+// button click event
+const searchBtn = document.getElementById("searchBtn");
+
+searchBtn.addEventListener("click", function () {
+    performSearch(searchInput.value);
+});
+
+// sort logic
+const sortSelect = document.getElementById("sortSelect");
+
+sortSelect.addEventListener("change", function () {
+    sortPokemons(this.value);
+});
+
+function sortPokemons(type) {
+
+    let sorted = [...allPokemons]; // original-г эвдэхгүй
+
+    switch (type) {
+
+        case "number-asc":
+            sorted.sort((a, b) => a.id - b.id);
+            break;
+
+        case "number-desc":
+            sorted.sort((a, b) => b.id - a.id);
+            break;
+
+        case "name-asc":
+            sorted.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+            break;
+
+        case "name-desc":
+            sorted.sort((a, b) =>
+                b.name.localeCompare(a.name)
+            );
+            break;
+    }
+
+    cardsContainer.innerHTML = "";
+    sorted.forEach(renderPokemon);
+}
+
+const filterBtn = document.getElementById("filterBtn");
+const panel = document.getElementById("filterPanel");
+const overlay = document.getElementById("overlay");
+const closeBtn = document.getElementById("filterClose");
+
+filterBtn.addEventListener("click", () => {
+    panel.classList.remove("hidden");
+    panel.classList.add("active");
+    overlay.classList.add("active");
+});
+
+closeBtn.addEventListener("click", closePanel);
+overlay.addEventListener("click", closePanel);
+
+function closePanel() {
+    panel.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+const typeContainer = document.getElementById("typeFilters");
+
+Object.keys(backgroundColors).forEach(type => {
+
+    const label = document.createElement("label");
+    label.classList.add("filter-option");
+
+    label.innerHTML = `
+        <input type="checkbox" value="${type}">
+        ${type.charAt(0).toUpperCase() + type.slice(1)}
+    `;
+
+    typeContainer.appendChild(label);
+});
+
+const applyBtn = document.getElementById("filterApply");
+const resetBtn = document.getElementById("filterReset");
+
+applyBtn.addEventListener("click", () => {
+
+    const selected = [
+        ...document.querySelectorAll("#typeFilters input:checked")
+    ].map(cb => cb.value);
+
+    let filtered = allPokemons;
+
+    if (selected.length > 0) {
+        filtered = allPokemons.filter(pokemon =>
+            pokemon.types.some(t =>
+                selected.includes(t.type.name)
+            )
+        );
+    }
+
+    cardsContainer.innerHTML = "";
+    filtered.forEach(renderPokemon);
+
+    closePanel();
+});
+
+resetBtn.addEventListener("click", () => {
+    document
+        .querySelectorAll("#typeFilters input")
+        .forEach(cb => cb.checked = false);
+});
+
+// modal
+
+const modal = document.getElementById("modal");
+const backBtn = document.querySelector(".back-btn");
+
+backBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+});
+
+async function openModal(pokemon) {
+    const mainType = pokemon.types[0].type.name;
+    const color = backgroundColors[mainType] || "#999";
+
+    document.querySelector(".modal-header").style.background = color;
+
+    document.getElementById("modalName").textContent =
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+    document.getElementById("modalId").textContent =
+        "#" + pokemon.id.toString().padStart(3, "0");
+
+    document.getElementById("modalImage").src =
+        pokemon.sprites.other["official-artwork"].front_default;
+
+    document.getElementById("modalTypes").innerHTML =
+        pokemon.types.map(t => {
+
+            const typeName = t.type.name;
+            const icon = pokemonIcons[typeName] || "";
+            
+            let background;
+
+            if (Array.isArray(tagColors[typeName])) {
+                // gradient (flying)
+                background = `linear-gradient(to bottom, ${tagColors[typeName][0]}, ${tagColors[typeName][1]})`;
+            } else {
+                background = tagColors[typeName] || "#ccc";
+            }
+
+            return `  
+                <span class="type-badge" style="background:${background}">
+                    <span class="type-icon">${icon}</span>
+                    <span class="type-text">
+                        ${typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+                    </span>
+                </span>
+                `;
+        }).join("");
+
+    try {
+        const speciesRes = await fetch(pokemon.species.url);
+        const speciesData = await speciesRes.json();
+
+        const genusObj = 
+            speciesData.genera.find(g => g.language.name === "en");
+
+        const genus = genusObj ? genusObj.genus : "Unknown Pokemon";
+
+        showAboutTab(pokemon, genus);
+
+    } catch (error) {
+        showAboutTab(pokemon, "Unknown Pokemon");
+    }
+
+    modal.classList.remove("hidden");
+}
+
+function showAboutTab(pokemon, genus) {
+
+    const tabContent = document.getElementById("tabContent");
+
+    tabContent.innerHTML = `
+    <p><strong>Species:</strong> ${genus}</p>
+    <p><strong>Height:</strong> ${pokemon.height}</p>
+    <p><strong>Weight:</strong> ${pokemon.weight}</p>
+    <p><strong>Abilities:</strong>
+      ${pokemon.abilities.map(a => a.ability.name).join(", ")}
+    </p>
+  `;
+}
+
+function closeModal() {
+    modal.classList.add("hidden");
+}

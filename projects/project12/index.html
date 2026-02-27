@@ -96,10 +96,18 @@
         </section>
     </main>
 
+    <div id="overlay" class="overlay"></div>
+
     <div id="filterPanel" class="panel hidden">
         <div class="panel-head">
             <h3>Filters</h3>
-            <button id="filterClose" class="btn ghost">Close</button>
+            <button id="filterClose" class="btn ghost"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12.59 14L14 12.59L8.41 7L14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14Z"
+                        fill="#212121" />
+                </svg>
+            </button>
         </div>
         <div class="panel-body">
             <div class="filter-group">
@@ -108,18 +116,42 @@
             </div>
         </div>
         <div class="panel-actions">
-            <button id="filterReset" class="btn ghost">Reset</button>
-            <button id="filterApply" class="btn primary">Apply</button>
+            <button id="filterReset" class="btn ghost">Reset filters</button>
+            <button id="filterApply" class="btn primary">Apply filters</button>
         </div>
     </div>
 
     <div id="modal" class="modal hidden">
         <div class="modal-card">
-            <div class="modal-head">
-                <h3 id="modalTitle">Details</h3>
-                <button id="modalClose" class="btn ghost">Close</button>
+            <div class="modal-header">
+                <button class="back-btn"><svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.70679 13.6948C7.51926 13.8822 7.26495 13.9875 6.99979 13.9875C6.73462 13.9875 6.48031 13.8822 6.29279 13.6948L0.292786 7.69476C0.105315 7.50723 0 7.25293 0 6.98776C0 6.7226 0.105315 6.46829 0.292786 6.28076L6.29279 0.280762C6.48139 0.0986032 6.73399 -0.00219059 6.99619 8.7738e-05C7.25838 0.00236607 7.5092 0.107536 7.6946 0.292944C7.88001 0.478352 7.98518 0.729165 7.98746 0.991362C7.98974 1.25356 7.88894 1.50616 7.70679 1.69476L3.41379 5.98776L14.9998 5.98776C15.265 5.98776 15.5194 6.09312 15.7069 6.28066C15.8944 6.46819 15.9998 6.72255 15.9998 6.98776C15.9998 7.25298 15.8944 7.50733 15.7069 7.69487C15.5194 7.88241 15.265 7.98776 14.9998 7.98776L3.41379 7.98776L7.70679 12.2808C7.89426 12.4683 7.99957 12.7226 7.99957 12.9878C7.99957 13.2529 7.89426 13.5072 7.70679 13.6948Z"
+                            fill="white" />
+                    </svg>
+                </button>
+                <div class="modal-hero">
+                    <div>
+                        <img id="modalImage" />
+                    </div>
+                    <div class="mainInfo">
+                        <p id="modalId"></p>
+                        <h2 id="modalName"></h2>
+                        <div id="modalTypes"></div>
+                    </div>
+                </div>
             </div>
-            <div id="modalBody" class="modal-body"></div>
+
+            <div class="modal-content">
+                <div class="tabs">
+                    <button class="tab active" data-tab="about">About</button>
+                    <button class="tab" data-tab="stats">Base Stats</button>
+                    <button class="tab" data-tab="evolution">Evolution</button>
+                </div>
+
+                <div id="tabContent"></div>
+            </div>
         </div>
     </div>
 
