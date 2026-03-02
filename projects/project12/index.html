@@ -68,7 +68,7 @@
                 <div class="search">
                     <input id="searchInput" type="text" placeholder="Pokemon name, number or type" autocomplete="off">
                 </div>
-                <button id="searchBtn" class="btn primary">Search</button>
+                <button type="button" id="searchBtn" class="btn primary">Search</button>
             </div>
 
             <div class="toolbar">
@@ -79,7 +79,7 @@
                     <option value="name-desc">Alphabetically (Z-A)</option>
                 </select>
 
-                <button id="filterBtn" class="btn ghost">
+                <button type="button" id="filterBtn" class="btn ghost">
                     <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M0.75 0H15.25C15.4489 0 15.6397 0.0987719 15.7803 0.274587C15.921 0.450403 16 0.68886 16 0.9375C16 1.18614 15.921 1.4246 15.7803 1.60041C15.6397 1.77623 15.4489 1.875 15.25 1.875H0.75C0.551088 1.875 0.360322 1.77623 0.21967 1.60041C0.0790176 1.4246 0 1.18614 0 0.9375C0 0.68886 0.0790176 0.450403 0.21967 0.274587C0.360322 0.0987719 0.551088 0 0.75 0ZM3 5.9375C3 5.68886 3.07902 5.4504 3.21967 5.27459C3.36032 5.09877 3.55109 5 3.75 5H12.25C12.4489 5 12.6397 5.09877 12.7803 5.27459C12.921 5.4504 13 5.68886 13 5.9375C13 6.18614 12.921 6.4246 12.7803 6.60041C12.6397 6.77623 12.4489 6.875 12.25 6.875H3.75C3.55109 6.875 3.36032 6.77623 3.21967 6.60041C3.07902 6.4246 3 6.18614 3 5.9375ZM6 10.9375C6 10.6889 6.07902 10.4504 6.21967 10.2746C6.36032 10.0988 6.55109 10 6.75 10H9.25C9.44891 10 9.63968 10.0988 9.78033 10.2746C9.92098 10.4504 10 10.6889 10 10.9375C10 11.1861 9.92098 11.4246 9.78033 11.6004C9.63968 11.7762 9.44891 11.875 9.25 11.875H6.75C6.55109 11.875 6.36032 11.7762 6.21967 11.6004C6.07902 11.4246 6 11.1861 6 10.9375Z"
@@ -90,7 +90,7 @@
             </div>
         </header>
 
-        <section>
+        <section class="content">
             <div id="cards" class="grid"></div>
             <div id="loader" class="loader">Loading...</div>
         </section>
@@ -101,7 +101,7 @@
     <div id="filterPanel" class="panel hidden">
         <div class="panel-head">
             <h3>Filters</h3>
-            <button id="filterClose" class="btn ghost"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+            <button type="button" id="filterClose" class="btn ghost"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M12.59 14L14 12.59L8.41 7L14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14Z"
@@ -116,24 +116,24 @@
             </div>
         </div>
         <div class="panel-actions">
-            <button id="filterReset" class="btn ghost">Reset filters</button>
-            <button id="filterApply" class="btn primary">Apply filters</button>
+            <button type="button" id="filterReset" class="btn ghost">Reset filters</button>
+            <button type="button" id="filterApply" class="btn primary">Apply filters</button>
         </div>
     </div>
 
     <div id="modal" class="modal hidden">
         <div class="modal-card">
             <div class="modal-header">
-                <button class="back-btn"><svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                <button type="button" class="back-btn"><svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M7.70679 13.6948C7.51926 13.8822 7.26495 13.9875 6.99979 13.9875C6.73462 13.9875 6.48031 13.8822 6.29279 13.6948L0.292786 7.69476C0.105315 7.50723 0 7.25293 0 6.98776C0 6.7226 0.105315 6.46829 0.292786 6.28076L6.29279 0.280762C6.48139 0.0986032 6.73399 -0.00219059 6.99619 8.7738e-05C7.25838 0.00236607 7.5092 0.107536 7.6946 0.292944C7.88001 0.478352 7.98518 0.729165 7.98746 0.991362C7.98974 1.25356 7.88894 1.50616 7.70679 1.69476L3.41379 5.98776L14.9998 5.98776C15.265 5.98776 15.5194 6.09312 15.7069 6.28066C15.8944 6.46819 15.9998 6.72255 15.9998 6.98776C15.9998 7.25298 15.8944 7.50733 15.7069 7.69487C15.5194 7.88241 15.265 7.98776 14.9998 7.98776L3.41379 7.98776L7.70679 12.2808C7.89426 12.4683 7.99957 12.7226 7.99957 12.9878C7.99957 13.2529 7.89426 13.5072 7.70679 13.6948Z"
-                            fill="white" />
+                            fill="currentColor" />
                     </svg>
                 </button>
                 <div class="modal-hero">
                     <div>
-                        <img id="modalImage" />
+                        <img id="modalImage" alt="Pokemon image" />
                     </div>
                     <div class="mainInfo">
                         <p id="modalId"></p>
@@ -145,9 +145,9 @@
 
             <div class="modal-content">
                 <div class="tabs">
-                    <button class="tab active" data-tab="about">About</button>
-                    <button class="tab" data-tab="stats">Base Stats</button>
-                    <button class="tab" data-tab="evolution">Evolution</button>
+                    <button type="button" class="tab active" data-tab="about">About</button>
+                    <button type="button" class="tab" data-tab="stats">Base Stats</button>
+                    <button type="button" class="tab" data-tab="evolution">Evolution</button>
                 </div>
 
                 <div id="tabContent"></div>

@@ -13,7 +13,8 @@ body {
 }
 
 .page {
-    width: 1512px;
+    max-width: 1512px;
+    width: 100%;
     background: rgba(245, 247, 251, 1);
     min-height: 100vh;
     padding: 48px 64px;
@@ -113,7 +114,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 322px);
+    grid-template-columns: repeat(auto-fill, minmax(322px, 1fr));
     justify-content: center;
     gap: 32px;
     height: auto;
@@ -170,7 +171,7 @@ body {
     align-items: center;
     gap: 6px;
 
-    font-family: "Roboto", sans-serif;
+    color: #000;
 }
 
 .type-icon svg {
@@ -187,7 +188,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: 0.3s ease;
-    z-index: 900;
+    z-index: 1000;
 }
 
 .overlay.active {
@@ -234,12 +235,6 @@ body {
     font-weight: 600;
     margin-bottom: 12px;
     color: #6b7280;
-}
-
-.filter-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px 14px;
 }
 
 .filter-option {
@@ -322,42 +317,50 @@ body {
     gap: 10px;
 }
 
-.filter-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-}
-
 /* modal */
 
 .modal {
     position: fixed;
     inset: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 999;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+
+    z-index: 1100;
 }
 
-.hidden {
-    display: none;
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
 .modal-card {
     width: 725px;
-    height: 698px;
-    border-radius: 24px;
-    overflow: hidden;
+    height: 680px;
+
+    border-radius: 28px;
     background: white;
+    overflow: hidden;
+
+    transform: scale(0.92);
+    transition: 0.25s ease;
+
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+}
+
+.modal.active .modal-card {
+    transform: scale(1);
 }
 
 .modal-header {
     position: relative;
-    padding: 30px 40px 40px;
+    padding: 40px;
     color: white;
-    overflow: hidden;
 }
 
 .modal-hero {
@@ -367,30 +370,30 @@ body {
 }
 
 .modal-hero img {
-    width: 180px;
-    height: 180px;
-    display: block;
-    margin: 0 auto;
+    width: 200px;
+    height: 200px;
 }
 
 .mainInfo {
-    width: 50%;
+    width: 40%;
     margin-left: 40px;
 }
 
 #modalId {
+    opacity: 0.85;
+    font-size: 18px;
     margin-bottom: 8px;
 }
 
 #modalName {
     font-size: 48px;
-    margin-bottom: 18px;
+    font-weight: 800;
+    margin-bottom: 16px;
 }
 
 #modalTypes {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
 }
 
 #modalTypes .type-badge {
@@ -398,7 +401,265 @@ body {
 }
 
 .modal-content {
-    padding: 20px;
+    padding: 12px 24px;
+    background: #f7f9fc;
     height: 420px;
-    border-radius: 16px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    color: white;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateX(-2px);
+}
+
+.back-btn:active {
+    transform: scale(0.92);
+}
+
+.tabs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(33, 33, 33, 0.24);
+}
+
+.tab {
+    background: none;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.2s ease;
+}
+
+.tab.active {
+    opacity: 1;
+    padding: 15px;
+    border-bottom: 5px solid rgba(65, 110, 223, 1);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 16px;
+    column-gap: 24px;
+    margin-top: 30px;
+}
+
+.about-label {
+    font-weight: 700;
+    color: rgba(33, 33, 33, 1);
+}
+
+.about-value {
+    font-weight: 500;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    margin-top: 25px;
+}
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 90px 50px 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.stat-value {
+    font-weight: 700;
+    text-align: right;
+    font-size: 14px;
+    color: #111827;
+}
+
+.stat-bar {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: #416edf;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+.tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid #d6dbe6;
+}
+
+.tab {
+    position: relative;
+    background: none;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 16px 0;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+/* Underline (hidden by default) */
+.tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3px;
+    background: #416EDF;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+    transform-origin: left;
+}
+
+/* Active state */
+.tab.active {
+    opacity: 1;
+}
+
+/* Animate underline in */
+.tab.active::after {
+    transform: scaleX(1);
+}
+
+.evolution-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.evo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.evo-item img {
+    width: 120px;
+    height: 120px;
+}
+
+.evo-name {
+    font-weight: 600;
+}
+
+.evo-arrow {
+    font-size: 28px;
+    font-weight: bold;
+    color: #6b7280;
+}
+
+/* Evolution Empty State */
+
+.evolution-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.empty-circle {
+    position: relative;
+    width: 160px;
+    height: 160px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-circle img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.empty-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.empty-circle::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("data:image/svg+xml;utf8,<svg width='127' height='128' viewBox='0 0 127 128' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='63.4654' cy='63.9999' r='27.7022' fill='%23212121' fill-opacity='0.16'/><path fill-rule='evenodd' clip-rule='evenodd' d='M126.93 55.6894C122.856 24.2695 95.9949 7.62939e-05 63.4651 7.62939e-05C30.9353 7.62939e-05 4.07396 24.2695 -0.000191257 55.6894H23.3685C27.209 37.0629 43.7019 23.0589 63.4656 23.0589C83.2293 23.0589 99.7222 37.0629 103.563 55.6894H126.93ZM126.93 72.3107H103.563C99.7223 90.9372 83.2294 104.941 63.4656 104.941C43.7019 104.941 27.209 90.9372 23.3685 72.3107H-0.000200652C4.07392 103.731 30.9353 128 63.4651 128C95.995 128 122.856 103.731 126.93 72.3107Z' fill='%23212121' fill-opacity='0.16'/></svg>");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.search-empty {
+    grid-column: 1 / -1;   /* makes it span full grid width */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 120px;
+    gap: 20px;
+}
+
+.search-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-empty-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
 }

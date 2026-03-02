@@ -1,6 +1,16 @@
 // ===== DOM =====
 const cardsContainer = document.getElementById("cards");
 
+// ===== STATE =====
+let allPokemons = [];
+let currentPokemon = null;
+let currentGenus = null;
+
+// ===== HELPERS =====
+function capitalize(str) {
+    return str ? str[0].toUpperCase() + str.slice(1) : "";
+}
+
 // ===== API =====
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
@@ -119,9 +129,7 @@ function renderPokemon(pokemon) {
 
     // ===== Name =====
     const name = document.createElement("h3");
-    name.textContent =
-        pokemon.name.charAt(0).toUpperCase() +
-        pokemon.name.slice(1);
+    name.textContent = capitalize(pokemon.name);
 
     // ===== ID =====
     const id = document.createElement("p");
@@ -145,9 +153,7 @@ function renderPokemon(pokemon) {
         iconWrapper.innerHTML = pokemonIcons[typeName] || "";
 
         const text = document.createElement("span");
-        text.textContent =
-            typeName.charAt(0).toUpperCase() +
-            typeName.slice(1);
+        text.textContent = capitalize(typeName);
 
         badge.appendChild(iconWrapper);
         badge.appendChild(text);
@@ -180,8 +186,6 @@ function renderPokemon(pokemon) {
 fetchPokemons();
 
 // ===== SEARCH =====
-let allPokemons = [];
-
 function performSearch(value) {
 
     const searchValue = value.toLowerCase().trim();
@@ -196,20 +200,24 @@ function performSearch(value) {
     }
 
     const filtered = allPokemons.filter(pokemon =>
-        pokemon.name.includes(searchValue) ||
+        pokemon.name.toLowerCase().includes(searchValue) ||
         String(pokemon.id).includes(searchValue) ||
         pokemon.types.some(t =>
-            t.type.name.includes(searchValue)
+            t.type.name.toLowerCase().includes(searchValue)
         )
     );
 
     filtered.forEach(pokemon => {
         renderPokemon(pokemon);
     });
+
+    if (filtered.length === 0) {
+        cardsContainer.innerHTML = "<p>No Pokémon found.</p>";
+    }
 }
 
 // enter event
-const searchInput = document.querySelector(".search input");
+const searchInput = document.getElementById("searchInput");
 
 searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
@@ -233,33 +241,33 @@ sortSelect.addEventListener("change", function () {
 
 function sortPokemons(type) {
 
-    let sorted = [...allPokemons]; // original-г эвдэхгүй
+    let currentList = [...allPokemons];
 
     switch (type) {
 
         case "number-asc":
-            sorted.sort((a, b) => a.id - b.id);
+            currentList.sort((a, b) => a.id - b.id);
             break;
 
         case "number-desc":
-            sorted.sort((a, b) => b.id - a.id);
+            currentList.sort((a, b) => b.id - a.id);
             break;
 
         case "name-asc":
-            sorted.sort((a, b) =>
+            currentList.sort((a, b) =>
                 a.name.localeCompare(b.name)
             );
             break;
 
         case "name-desc":
-            sorted.sort((a, b) =>
+            currentList.sort((a, b) =>
                 b.name.localeCompare(a.name)
             );
             break;
     }
 
     cardsContainer.innerHTML = "";
-    sorted.forEach(renderPokemon);
+    currentList.forEach(renderPokemon);
 }
 
 const filterBtn = document.getElementById("filterBtn");
@@ -274,11 +282,18 @@ filterBtn.addEventListener("click", () => {
 });
 
 closeBtn.addEventListener("click", closePanel);
-overlay.addEventListener("click", closePanel);
 
 function closePanel() {
     panel.classList.remove("active");
-    overlay.classList.remove("active");
+
+    setTimeout(() => {
+        panel.classList.add("hidden");
+
+        if (modal.classList.contains("hidden")) {
+            overlay.classList.remove("active");
+        }
+
+    }, 350);
 }
 
 const typeContainer = document.getElementById("typeFilters");
@@ -290,7 +305,7 @@ Object.keys(backgroundColors).forEach(type => {
 
     label.innerHTML = `
         <input type="checkbox" value="${type}">
-        ${type.charAt(0).toUpperCase() + type.slice(1)}
+        ${capitalize(type)}
     `;
 
     typeContainer.appendChild(label);
@@ -327,23 +342,41 @@ resetBtn.addEventListener("click", () => {
         .forEach(cb => cb.checked = false);
 });
 
-// modal
+// modal 
 
 const modal = document.getElementById("modal");
 const backBtn = document.querySelector(".back-btn");
 
 backBtn.addEventListener("click", () => {
-    modal.classList.add("hidden");
+    closeModal();
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        if (modal.classList.contains("active")) {
+            closeModal();
+        }
+        if (panel.classList.contains("active")) {
+            closePanel();
+        }
+    }
 });
 
 async function openModal(pokemon) {
+
     const mainType = pokemon.types[0].type.name;
     const color = backgroundColors[mainType] || "#999";
 
     document.querySelector(".modal-header").style.background = color;
 
-    document.getElementById("modalName").textContent =
-        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+    document.getElementById("modalName").textContent = capitalize(pokemon.name);
 
     document.getElementById("modalId").textContent =
         "#" + pokemon.id.toString().padStart(3, "0");
@@ -356,7 +389,7 @@ async function openModal(pokemon) {
 
             const typeName = t.type.name;
             const icon = pokemonIcons[typeName] || "";
-            
+
             let background;
 
             if (Array.isArray(tagColors[typeName])) {
@@ -370,44 +403,268 @@ async function openModal(pokemon) {
                 <span class="type-badge" style="background:${background}">
                     <span class="type-icon">${icon}</span>
                     <span class="type-text">
-                        ${typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+                        ${capitalize(typeName)}
                     </span>
                 </span>
                 `;
         }).join("");
 
+    let genus = "Unknown Pokemon";
+
     try {
         const speciesRes = await fetch(pokemon.species.url);
         const speciesData = await speciesRes.json();
 
-        const genusObj = 
+        const genusObj =
             speciesData.genera.find(g => g.language.name === "en");
 
-        const genus = genusObj ? genusObj.genus : "Unknown Pokemon";
-
-        showAboutTab(pokemon, genus);
+        if (genusObj) {
+            genus = genusObj.genus;
+        }
 
     } catch (error) {
-        showAboutTab(pokemon, "Unknown Pokemon");
+        console.error("Species fetch error:", error);
     }
 
-    modal.classList.remove("hidden");
+    currentPokemon = pokemon;
+    currentGenus = genus;
+
+    showAboutTab(currentPokemon, currentGenus);
+
+    overlay.classList.add("active");
+    modal.classList.add("active");
+
+    // base stats
+
+    currentPokemon = pokemon;
+    currentGenus = genus;
+
+    document.querySelector('[data-tab="about"]').click();
+
 }
 
 function showAboutTab(pokemon, genus) {
 
     const tabContent = document.getElementById("tabContent");
 
+    const height = pokemon.height / 10; // meters
+    const weight = pokemon.weight / 10; // kg
+
     tabContent.innerHTML = `
-    <p><strong>Species:</strong> ${genus}</p>
-    <p><strong>Height:</strong> ${pokemon.height}</p>
-    <p><strong>Weight:</strong> ${pokemon.weight}</p>
-    <p><strong>Abilities:</strong>
-      ${pokemon.abilities.map(a => a.ability.name).join(", ")}
-    </p>
-  `;
+        <div class="about-grid">
+            <div class="about-label">Species</div>
+            <div class="about-value">${genus}</div>
+
+            <div class="about-label">Height</div>
+            <div class="about-value">${height.toFixed(1)} m</div>
+
+            <div class="about-label">Weight</div>
+            <div class="about-value">${weight.toFixed(1)} kg</div>
+
+            <div class="about-label">Abilities</div>
+            <div class="about-value">
+                ${pokemon.abilities.map(a => capitalize(a.ability.name)).join(", ")}
+            </div>
+        </div>
+    `;
 }
 
 function closeModal() {
-    modal.classList.add("hidden");
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+// base stats
+
+const tabs = document.querySelectorAll(".tab");
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+
+        // remove active from all
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // add active to clicked tab
+        tab.classList.add("active");
+
+        const selectedTab = tab.dataset.tab;
+
+        if (selectedTab === "about") {
+            showAboutTab(currentPokemon, currentGenus);
+        }
+
+        if (selectedTab === "stats") {
+            showStatsTab(currentPokemon);
+        }
+
+        if (selectedTab === "evolution") {
+            showEvolutionTab(currentPokemon);
+        }
+    });
+});
+
+function showStatsTab(pokemon) {
+
+    const tabContent = document.getElementById("tabContent");
+
+    const total = pokemon.stats.reduce((sum, stat) => {
+        return sum + stat.base_stat;
+    }, 0);
+
+    const average = Math.round(total / pokemon.stats.length);
+
+    const statsHTML = pokemon.stats.map(stat => {
+
+        const name = formatStatName(stat.stat.name);
+        const value = stat.base_stat;
+
+        return `
+            <div class="stat-row">
+                <div class="stat-name">${name}</div>
+                <div class="stat-value">${value}</div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:${value}%"></div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    // 👇 ADD AVERAGE AS NORMAL STAT ROW
+    const averageRow = `
+        <div class="stat-row">
+            <div class="stat-name">Average</div>
+            <div class="stat-value">${average}</div>
+            <div class="stat-bar">
+                <div class="stat-fill" style="width:${average}%"></div>
+            </div>
+        </div>
+    `;
+
+    tabContent.innerHTML = `
+        <div class="stats-container">
+            ${statsHTML}
+            ${averageRow}
+        </div>
+    `;
+}
+
+function formatStatName(name) {
+    const map = {
+        "hp": "HP",
+        "attack": "Attack",
+        "defense": "Defense",
+        "special-attack": "Sp. Atk",
+        "special-defense": "Sp. Def",
+        "speed": "Speed"
+    };
+
+    return map[name] || name;
+}
+
+async function showEvolutionTab(pokemon) {
+
+    const tabContent = document.getElementById("tabContent");
+    tabContent.innerHTML = "Loading...";
+
+    try {
+        const speciesRes = await fetch(pokemon.species.url);
+        const speciesData = await speciesRes.json();
+
+        const evoRes = await fetch(speciesData.evolution_chain.url);
+        const evoData = await evoRes.json();
+
+        // ✅ 1️⃣ Build evolution list
+        const evolutions = [];
+
+        function traverse(chain) {
+            evolutions.push(chain.species.name);
+
+            if (chain.evolves_to.length > 0) {
+                chain.evolves_to.forEach(evo => traverse(evo));
+            }
+        }
+
+        traverse(evoData.chain);
+
+        if (evolutions.length === 1) {
+            tabContent.innerHTML = `
+                <div class="evolution-empty">
+                    <div class="empty-circle">
+                        <img src="${pokemon.sprites.other["official-artwork"].front_default}">
+                    </div>
+                    <p class="empty-text">This Pokémon doesn't Evolve</p>
+                </div>
+            `;
+            return;
+        }
+
+        // ✅ 3️⃣ Only fetch details if there are evolutions
+        const evoDetails = await Promise.all(
+            evolutions.map(name =>
+                fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+                    .then(res => res.json())
+            )
+        );
+
+        // Normal render
+        tabContent.innerHTML = `
+            <div class="evolution-container">
+                ${evoDetails.map((p, index) => `
+                    <div class="evo-item">
+                        <img src="${p.sprites.other["official-artwork"].front_default}">
+                        <div class="evo-name">${capitalize(p.name)}</div>
+                    </div>
+                    ${index < evoDetails.length - 1 ? `<div class="evo-arrow">→</div>` : ""}
+                `).join("")}
+            </div>
+        `;
+
+    } catch (error) {
+        tabContent.innerHTML = `
+            <div class="evolution-empty">
+                <div class="empty-circle">
+                    <img src="${pokemon.sprites.other["official-artwork"].front_default}">
+                </div>
+                <p class="empty-text">This Pokémon doesn't Evolve</p>
+            </div>
+        `;
+    }
+}
+
+function renderSearchEmpty() {
+    const grid = document.getElementById("cards");
+
+    grid.innerHTML = `
+        <div class="search-empty">
+            <div class="search-empty-icon">🔍</div>
+            <p class="search-empty-text">
+                No Pokémon matched your search!
+            </p>
+        </div>
+    `;
+}
+
+async function handleSearch() {
+
+    const query = searchInput.value.trim().toLowerCase();
+
+    if (!query) return;
+
+    showLoading();
+
+    try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+
+        if (!res.ok) {
+            renderSearchEmpty();
+            return;   // 🔥 VERY IMPORTANT
+        }
+
+        const data = await res.json();
+        renderPokemonCard(data);
+
+    } catch (error) {
+        renderSearchEmpty();
+        return;  // 🔥 VERY IMPORTANT
+    }
 }
