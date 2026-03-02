@@ -1,0 +1,2 @@
+INDEX VERSION 1.134+/Users/nippon/Desktop/nippon_fall_2025/month06/week21/session100/backend/.metadata/.plugins/org.eclipse.jdt.core
+1865797976.index

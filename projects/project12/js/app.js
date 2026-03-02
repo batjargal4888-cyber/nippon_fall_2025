@@ -3,6 +3,7 @@ const cardsContainer = document.getElementById("cards");
 
 // ===== STATE =====
 let allPokemons = [];
+let displayedPokemons = [];
 let currentPokemon = null;
 let currentGenus = null;
 
@@ -29,10 +30,9 @@ async function fetchPokemons() {
         const details = await Promise.all(detailPromises);
 
         allPokemons = details;
+        displayedPokemons = [...details];
 
-        details.forEach(pokemon => {
-            renderPokemon(pokemon);
-        });
+        details.forEach(renderPokemon);
 
     } catch (error) {
         console.error("Алдаа гарлаа:", error);
@@ -192,13 +192,14 @@ function performSearch(value) {
 
     cardsContainer.innerHTML = "";
 
+    // ✅ If empty → reset to full list
     if (searchValue === "") {
-        allPokemons.forEach(pokemon => {
-            renderPokemon(pokemon);
-        });
+        displayedPokemons = [...allPokemons];   // VERY IMPORTANT
+        displayedPokemons.forEach(renderPokemon);
         return;
     }
 
+    // ✅ Filter from full dataset
     const filtered = allPokemons.filter(pokemon =>
         pokemon.name.toLowerCase().includes(searchValue) ||
         String(pokemon.id).includes(searchValue) ||
@@ -207,13 +208,16 @@ function performSearch(value) {
         )
     );
 
-    filtered.forEach(pokemon => {
-        renderPokemon(pokemon);
-    });
+    // ✅ Save filtered state
+    displayedPokemons = filtered;
 
+    // ✅ Render results
     if (filtered.length === 0) {
-        cardsContainer.innerHTML = "<p>No Pokémon found.</p>";
+        renderSearchEmpty();
+        return;
     }
+
+    filtered.forEach(renderPokemon);
 }
 
 // enter event
@@ -642,29 +646,4 @@ function renderSearchEmpty() {
             </p>
         </div>
     `;
-}
-
-async function handleSearch() {
-
-    const query = searchInput.value.trim().toLowerCase();
-
-    if (!query) return;
-
-    showLoading();
-
-    try {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
-
-        if (!res.ok) {
-            renderSearchEmpty();
-            return;   // 🔥 VERY IMPORTANT
-        }
-
-        const data = await res.json();
-        renderPokemonCard(data);
-
-    } catch (error) {
-        renderSearchEmpty();
-        return;  // 🔥 VERY IMPORTANT
-    }
 }
