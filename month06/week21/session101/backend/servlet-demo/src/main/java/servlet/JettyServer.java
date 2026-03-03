@@ -21,6 +21,8 @@ public class JettyServer {
         
 //        Ex2. Энгийн тооцоолуур
         context.addServlet(new ServletHolder(new CalculatorServlet()), "/calculator");
+        
+        context.addServlet(new ServletHolder(new StudentServlet()), "/api/students/*");
 
         // Server эхлүүлэх
         server.start();

@@ -20,7 +20,7 @@ public class FormServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		out.println("!<DOCTYPE html>");
+		out.println("<!DOCTYPE html>");
 		out.println("<html><head><title>Contact Form</title></head>");
 		out.println("<body>");
 		out.println("<h1>Contact Form</h1>");
