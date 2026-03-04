@@ -1,0 +1,30 @@
+<h1>Session 103</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>👨‍🏫 Teacher Management</h1>
+
+        <div class="form-section">
+            <h2>Add Teacher</h2>
+            <input type="text" id="nameInput" placeholder="Name">
+            <input type="text" id="subjectInput" placeholder="Subject">
+            <button onclick="addTeacher()">Add Teacher</button>
+        </div>
+
+        <div class="list-section">
+            <h2>Teachers List</h2>
+            <button onclick="loadTeachers()">Refresh</button>
+            <ul id="teacherList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
