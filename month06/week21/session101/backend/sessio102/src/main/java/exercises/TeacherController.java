@@ -33,10 +33,10 @@ public class TeacherController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteTeacher(@PathVariable int id) {
-
-		teachers.removeIf(t -> t.getId() == id);
-		
-		return "{\"status\":\"deleted\"}";
-	}
+    public String deleteTeacher(@PathVariable("id") int id) {
+        if (id >= 0 && id < teachers.size()) {
+            teachers.remove(id);
+        }
+        return "{\"status\":\"deleted\"}";
+    }
 }
