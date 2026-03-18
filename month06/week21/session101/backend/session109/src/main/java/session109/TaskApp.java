@@ -1,14 +1,11 @@
-package session106;
+package session109;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApp {
-
+public class TaskApp {
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApp.class, args);
-		
+		SpringApplication.run(TaskApp.class, args);
 	}
-	
 }

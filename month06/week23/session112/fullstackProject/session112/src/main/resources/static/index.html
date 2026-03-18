@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App 1 - Library</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      margin-top: 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f1f1f1;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li button {
+      background: #e74c3c;
+    }
+
+    li button:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Library App</h2>
+
+<!-- ── AUTHORS ── -->
+<h3>Add Author</h3>
+<input type="text" id="authorName" placeholder="Name">
+<input type="text" id="authorCountry" placeholder="Country">
+<button onclick="createAuthor()">Save Author</button>
+
+<h3>Authors</h3>
+<button onclick="getAuthors()">Load</button>
+<ul id="authorList"></ul>
+
+<hr>
+
+<!-- ── BOOKS ── -->
+<h3>Add Book</h3>
+<input type="text" id="bookTitle" placeholder="Title">
+<input type="number" id="bookYear" placeholder="Year">
+<input type="number" id="authorId" placeholder="Author ID">
+
+<button onclick="createBook()">Save Book</button>
+
+<h3>Books</h3>
+<button onclick="getBooks()">Load</button>
+<ul id="bookList"></ul>
+
+<script>
+  const AUTHORS_API = 'http://localhost:8080/api/authors';
+  const BOOKS_API   = 'http://localhost:8080/api/books';
+
+  // ───────── AUTHORS ─────────
+  function getAuthors() {
+    fetch(AUTHORS_API)
+      .then(res => res.json())
+      .then(data => {
+		console.log(data);
+        const list = document.getElementById("authorList");
+        list.innerHTML = "";
+
+        data.forEach(author => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            ${author.name} (${author.country})
+            <button onclick="deleteAuthor(${author.id})">Delete</button>
+          `;
+          list.appendChild(li);
+        });
+      });
+  }
+
+  function createAuthor() {
+    const name = document.getElementById("authorName").value;
+    const country = document.getElementById("authorCountry").value;
+
+    fetch(AUTHORS_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, country })
+    })
+    .then(() => {
+      document.getElementById("authorName").value = "";
+      document.getElementById("authorCountry").value = "";
+      getAuthors();
+    });
+  }
+
+  function deleteAuthor(id) {
+    fetch(`${AUTHORS_API}/${id}`, { method: "DELETE" })
+      .then(() => getAuthors());
+  }
+
+  // ───────── BOOKS ─────────
+  function getBooks() {
+    fetch(BOOKS_API)
+      .then(res => res.json())
+      .then(data => {
+		console.log('books', data);
+        const list = document.getElementById("bookList");
+        list.innerHTML = "";
+
+        data.forEach(book => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            ${book.title} (${book.year}) by ${book.author ? book.author.name : "Unknown"}
+            <button onclick="deleteBook(${book.id})">Delete</button>
+          `;
+          list.appendChild(li);
+        });
+      });
+  }
+
+  function createBook() {
+    const title = document.getElementById("bookTitle").value;
+    const year = document.getElementById("bookYear").value;
+    const authorId = document.getElementById("authorId").value;
+
+    fetch(BOOKS_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title,
+        year: parseInt(year),
+        author: { id: parseInt(authorId) }
+      })
+    })
+    .then(() => {
+      document.getElementById("bookTitle").value = "";
+      document.getElementById("bookYear").value = "";
+      document.getElementById("authorId").value = "";
+      getBooks();
+    });
+  }
+
+  function deleteBook(id) {
+    fetch(`${BOOKS_API}/${id}`, { method: "DELETE" })
+      .then(() => getBooks());
+  }
+
+  // ───────── INIT ─────────
+  getAuthors();
+  getBooks();
+</script>
+
+</body>
+</html>
