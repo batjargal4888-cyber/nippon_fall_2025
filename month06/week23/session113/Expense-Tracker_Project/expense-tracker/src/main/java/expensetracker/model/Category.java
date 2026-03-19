@@ -37,7 +37,7 @@ public class Category {
 	
 //	Lifecycle
 	@PrePersist
-	public void prePersis() {
+	public void prePersist() {
 		this.createdAt = LocalDateTime.now();
 	}
 	

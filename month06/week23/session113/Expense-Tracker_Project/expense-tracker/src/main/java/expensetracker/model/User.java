@@ -42,7 +42,7 @@ public class User {
 		this.name = name;
 	}
 	
-//	Lifecycle
+//	Life cycle
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now();
