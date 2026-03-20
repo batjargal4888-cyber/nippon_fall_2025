@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Expense Tracker</title>
+	</head>
+	<body>
+		<h1>Expense Tracker</h1>
+		<hr>
+		<button onclick="showLogin()">Нэвтрэх</button>
+		<button onclick="showRegister()">Бүртгэл</button>
+		<div id="login">
+			<h3>Нэвтрэх</h3>
+			И-мэйл: <input id="email"><br><br>
+			Нууц үг: <input id="password" type="password"><br><br>
+			<button onclick="login()">Нэвтрэх</button>
+		</div>
+		<div id="register" style="display:none;">
+			<h3>Бүртгэл</h3>
+			И-мэйл: <input id="r_email"><br><br>
+			Нэр: <input id="r_name"><br><br>
+			Нууц үг: <input id="r_password" type="password"><br><br>
+			<button onclick="register()">Бүртгэх</button>
+		</div>
+		<p id="msg"></p>
+		<script>
+			function showLogin() {
+				document.getElementById("login").style.display = "block";
+				document.getElementById("register").style.display = "none";
+			}
+			function showLogin() {
+				document.getElementById("login").style.display = "none";
+				document.getElementById("register").style.display = "block";
+			}
+			async function login() {
+				const email = document.getElementById("email").value;
+				const password = document.getElementById("password").value;
+				const res = await fetch("/api/auth/login", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({ email, password })
+				});
+				
+				if (res.ok) {
+					const user = await res.json();
+					// save user cause no token
+					localStorage.setItem("user", JSON.stringify(user));
+					window.location.href = "dashboard.html";
+				} else {
+					document.getElementById("msg").innerText = "Login failed";
+				}
+			}
+			async function register() {
+				const email = document.getElementById("r_email").value;
+				const name = document.getElementById("r_name").value;
+				const password = document.getElementById("r_password").value;
+				const res = await fetch("/api/auth/register", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({ email, name, password })
+				});
+							
+				if (res.ok) {
+					const user = await res.json();
+					// save user cause no token
+					localStorage.setItem("user", JSON.stringify(user));
+					window.location.href = "dashboard.html";
+				} else {
+					document.getElementById("msg").innerText = "Register failed";
+				}
+			}
+		</script>
+	</body>
+</html>

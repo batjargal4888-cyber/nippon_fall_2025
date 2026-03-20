@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dashboard</title>
+	</head>
+	<body>
+		<h2>
+			Expense Tracker
+			<button onclick="logout()">Гарах</button>
+		</h2>
+		<hr>
+		<!-- Month filter -->
+		<label>Сар:</label>
+		<input id="month" type="month">
+		<button onclick="load()">Шүүх</button>
+		<h3>Нийт зарцуулалт: ₮<span id="total">0</span></h3>
+		<!-- Table -->
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Ангилал</th>
+					<th>Дүн</th>
+				</tr>
+			</thead>
+			<tbody id="table"></tbody>
+		</table>
+		<br>
+		<!-- Navigation -->
+		<a href="expense.html">→ Зардлууд</a>
+		<a href="categories.html">→ Ангилалууд</a>
+		<script>
+	</body>
+</html>
