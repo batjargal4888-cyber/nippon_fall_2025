@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Secure Notes</title>
+    <link rel="stylesheet" href="./css/syles.css" />
+    <style>
+        .container {
+            max-width: 600px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logout-btn {
+            background: #dc3545;
+            width: auto;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Notes html</h2>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+        <div 
+            style="
+                background: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                "
+        >
+            <input 
+                type="text"
+                id="noteTitle"
+                placeholder="Note Title"
+                style="margin-bottom: 10px"
+            />
+            <textarea 
+                id="noteContent"
+                placeholder="Write your secret note here..."
+                rows="3"
+                style="margin-bottom: 10px"
+            ></textarea>
+            <button onclick="createNote()" style="background: #28a745">
+                Save Note
+            </button>
+        </div>
+        <div id="noteList">
+            <p>Loading your notes...</p>
+        </div>
+    </div>
+    <script src="./js/notes.js"></script>
+</body>
+
+</html>

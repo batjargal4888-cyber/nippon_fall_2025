@@ -21,11 +21,12 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
 		http.csrf(csrf -> csrf.disable())
-			.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/*")
-					.permitAll()
-					.anyRequest()
-					.authenticated()
-			).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			.authorizeHttpRequests(
+					auth -> auth
+					.requestMatchers("/", "/index.html", "/notes.html", "/static/**", "/css/**", "/js/**").permitAll()
+					.requestMatchers("/api/auth/*").permitAll().anyRequest().authenticated()
+					)
+			.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();

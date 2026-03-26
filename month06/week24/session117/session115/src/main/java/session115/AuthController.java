@@ -1,5 +1,8 @@
 package session115;
 
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,22 +24,19 @@ public class AuthController {
 	}
 	
 	@PostMapping("/register")
-	public String register(@RequestBody AuthRequestDTO requestDTO) {
+	public Map<String, String> register(@RequestBody AuthRequestDTO requestDTO) {
 		User user = new User();
 		user.setUsername(requestDTO.getUsername());
 		user.setPassword(encoder.encode(requestDTO.getPassword()));
 		userRepository.save(user);
-		return "User registerd";
+		return Map.of("message", "User registered successfully");
 	}
 	
 	@PostMapping("/login")
-	public AuthResponseDTO login(@RequestBody AuthRequestDTO requestDTO) {
-		User user = userRepository.findByUsername(requestDTO.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
-		
-		if (encoder.matches(requestDTO.getPassword(), user.getPassword())) {
-			return new AuthResponseDTO(jwtUtil.generateToken(user.getUsername()));
-		}
-		
-		throw new RuntimeException("Invalid Credentials");
+	public ResponseEntity<?> login(@RequestBody AuthRequestDTO requestDTO) {
+		return userRepository.findByUsername(requestDTO.getUsername())
+				.filter(user -> encoder.matches(requestDTO.getPassword(), user.getPassword()))
+				.map(user -> ResponseEntity.ok(new AuthResponseDTO(jwtUtil.generateToken(user.getUsername()))))
+				.orElse(ResponseEntity.status(401).build());
 	}
 }
